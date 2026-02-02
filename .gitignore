@@ -40,3 +40,4 @@ Thumbs.db
 
 # Witness output (generated, large)
 data/witness_output/
+compendium/full_analysis.json
