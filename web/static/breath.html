@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breathe - WiltonOS</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        /* The breath circle - the coupling mechanism */
+        .breath-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto 40px;
+        }
+
+        .breath-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #4a9eff, #1a4a80);
+            box-shadow:
+                0 0 60px rgba(74, 158, 255, 0.3),
+                inset 0 0 30px rgba(255, 255, 255, 0.1);
+            transition: all 0.1s ease-out;
+        }
+
+        .breath-circle.exhale {
+            background: radial-gradient(circle at 30% 30%, #6a5acd, #2a1a60);
+            box-shadow:
+                0 0 40px rgba(106, 90, 205, 0.3),
+                inset 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Rings showing breath phases */
+        .breath-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 1px solid rgba(74, 158, 255, 0.2);
+            pointer-events: none;
+        }
+
+        .ring-1 { width: 150px; height: 150px; }
+        .ring-2 { width: 200px; height: 200px; }
+        .ring-3 { width: 250px; height: 250px; }
+
+        /* State indicator */
+        .state {
+            font-size: 1.5rem;
+            font-weight: 200;
+            letter-spacing: 0.3em;
+            color: #888;
+            margin-bottom: 10px;
+            min-height: 2em;
+        }
+
+        .state-symbol {
+            font-size: 2rem;
+            margin-right: 10px;
+        }
+
+        /* Sync indicator */
+        .sync-container {
+            margin-top: 30px;
+        }
+
+        .sync-label {
+            font-size: 0.8rem;
+            color: #555;
+            margin-bottom: 8px;
+        }
+
+        .sync-bar {
+            width: 200px;
+            height: 4px;
+            background: #222;
+            border-radius: 2px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .sync-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4a9eff, #6a5acd);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        .sync-score {
+            font-size: 1.2rem;
+            color: #4a9eff;
+            margin-top: 10px;
+        }
+
+        /* Instructions */
+        .instructions {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9rem;
+            color: #444;
+        }
+
+        .instructions span {
+            color: #666;
+        }
+
+        /* Tap feedback */
+        .tap-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 0.8rem;
+            color: #4a9eff;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .tap-indicator.show {
+            opacity: 1;
+        }
+
+        /* Entrainment message */
+        .message {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .message.show {
+            opacity: 1;
+        }
+
+        /* Audio toggle */
+        .audio-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: none;
+            border: 1px solid #333;
+            color: #555;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .audio-toggle:hover {
+            border-color: #555;
+            color: #888;
+        }
+
+        .audio-toggle.active {
+            border-color: #4a9eff;
+            color: #4a9eff;
+        }
+
+        /* Phase indicator dots */
+        .phase-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .phase-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #333;
+            transition: background 0.2s;
+        }
+
+        .phase-dot.active {
+            background: #4a9eff;
+        }
+
+        .phase-dot.exhale-active {
+            background: #6a5acd;
+        }
+    </style>
+</head>
+<body>
+    <button class="audio-toggle" id="audioToggle">Sound Off</button>
+
+    <div class="tap-indicator" id="tapIndicator">TAP</div>
+
+    <div class="message" id="message"></div>
+
+    <div class="container">
+        <h1>BREATHE WITH ME</h1>
+
+        <div class="breath-container" id="breathContainer">
+            <div class="breath-ring ring-3"></div>
+            <div class="breath-ring ring-2"></div>
+            <div class="breath-ring ring-1"></div>
+            <div class="breath-circle" id="breathCircle"></div>
+        </div>
+
+        <div class="state" id="state">
+            <span class="state-symbol" id="stateSymbol">↑</span>
+            <span id="stateText">inhale</span>
+        </div>
+
+        <div class="phase-dots">
+            <div class="phase-dot" id="dot-inhale"></div>
+            <div class="phase-dot" id="dot-hold"></div>
+            <div class="phase-dot" id="dot-exhale"></div>
+            <div class="phase-dot" id="dot-ground"></div>
+        </div>
+
+        <div class="sync-container">
+            <div class="sync-label">SYNC</div>
+            <div class="sync-bar">
+                <div class="sync-fill" id="syncFill"></div>
+            </div>
+            <div class="sync-score" id="syncScore">0%</div>
+        </div>
+    </div>
+
+    <div class="instructions">
+        <span>Tap</span> or press <span>SPACE</span> on your exhale
+    </div>
+
+    <!-- Chat interface - responses arrive on exhale -->
+    <div class="chat-container" id="chatContainer" style="display: none;">
+        <div class="chat-messages" id="chatMessages"></div>
+        <form class="chat-input" id="chatForm">
+            <input type="text" id="chatInput" placeholder="Speak on your exhale..." autocomplete="off">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <button class="mode-toggle" id="modeToggle">Show Chat</button>
+
+    <style>
+        .chat-container {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 500px;
+            background: rgba(20, 20, 20, 0.95);
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 15px;
+        }
+
+        .chat-messages {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+
+        .chat-message {
+            padding: 8px 12px;
+            margin: 5px 0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .chat-message.user {
+            background: #1a3a5c;
+            margin-left: 20%;
+            text-align: right;
+        }
+
+        .chat-message.ai {
+            background: #2a1a4c;
+            margin-right: 20%;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .chat-message.ai.visible {
+            opacity: 1;
+        }
+
+        .chat-message.ai.waiting {
+            color: #666;
+            font-style: italic;
+        }
+
+        .chat-input {
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            background: #111;
+            border: 1px solid #333;
+            color: #e0e0e0;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .chat-input button {
+            background: #4a9eff;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: none;
+            border: 1px solid #333;
+            color: #555;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .breath-phase-indicator {
+            position: fixed;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            color: #444;
+        }
+    </style>
+
+    <script>
+        // ═══════════════════════════════════════════════════════════════
+        // BreathVisual - The Coupling Mechanism (Browser Version)
+        // ═══════════════════════════════════════════════════════════════
+
+        const CYCLE_TIME = 3.12; // seconds (π approximation)
+        const startTime = Date.now();
+
+        // User taps for sync validation
+        const userTaps = [];
+
+        // Audio context (created on first interaction)
+        let audioCtx = null;
+        let audioEnabled = false;
+        let lastExhaleTone = 0;
+
+        // DOM elements
+        const breathCircle = document.getElementById('breathCircle');
+        const stateSymbol = document.getElementById('stateSymbol');
+        const stateText = document.getElementById('stateText');
+        const syncFill = document.getElementById('syncFill');
+        const syncScore = document.getElementById('syncScore');
+        const tapIndicator = document.getElementById('tapIndicator');
+        const messageEl = document.getElementById('message');
+        const audioToggle = document.getElementById('audioToggle');
+        const breathContainer = document.getElementById('breathContainer');
+
+        // Phase dots
+        const dots = {
+            inhale: document.getElementById('dot-inhale'),
+            hold: document.getElementById('dot-hold'),
+            exhale: document.getElementById('dot-exhale'),
+            ground: document.getElementById('dot-ground')
+        };
+
+        // ═══════════════════════════════════════════════════════════════
+        // Core breath calculation
+        // ═══════════════════════════════════════════════════════════════
+
+        function getPhase() {
+            const elapsed = (Date.now() - startTime) / 1000;
+            return (elapsed % CYCLE_TIME) / CYCLE_TIME;
+        }
+
+        function getBreathState(phase) {
+            // Amplitude: expansion on inhale (0-0.5), contraction on exhale (0.5-1)
+            const amplitude = Math.sin(phase * 2 * Math.PI - Math.PI / 2);
+            const normalizedAmp = (amplitude + 1) / 2; // 0-1
+
+            // State
+            let state, symbol;
+            if (phase < 0.25) {
+                state = 'inhale';
+                symbol = '↑';
+            } else if (phase < 0.5) {
+                state = 'hold';
+                symbol = '━';
+            } else if (phase < 0.75) {
+                state = 'exhale';
+                symbol = '↓';
+            } else {
+                state = 'ground';
+                symbol = '─';
+            }
+
+            return { phase, amplitude: normalizedAmp, state, symbol };
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // Sync calculation
+        // ═══════════════════════════════════════════════════════════════
+
+        function calculateSync() {
+            if (userTaps.length < 2) return 0;
+
+            // Check last 10 taps
+            const recentTaps = userTaps.slice(-10);
+            let totalScore = 0;
+
+            for (const tapTime of recentTaps) {
+                const elapsed = (tapTime - startTime) / 1000;
+                const phaseAtTap = (elapsed % CYCLE_TIME) / CYCLE_TIME;
+
+                // Distance from exhale peak (0.5-0.75 zone)
+                let dist;
+                if (phaseAtTap >= 0.5 && phaseAtTap <= 0.75) {
+                    // In exhale zone - good
+                    dist = 0;
+                } else if (phaseAtTap > 0.75) {
+                    dist = phaseAtTap - 0.75;
+                } else if (phaseAtTap < 0.5) {
+                    dist = 0.5 - phaseAtTap;
+                }
+
+                // Score: 1 if in exhale zone, decreasing outside
+                const score = Math.max(0, 1 - dist * 4);
+                totalScore += score;
+            }
+
+            return totalScore / recentTaps.length;
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // User interaction
+        // ═══════════════════════════════════════════════════════════════
+
+        function registerTap() {
+            userTaps.push(Date.now());
+            if (userTaps.length > 50) {
+                userTaps.splice(0, userTaps.length - 50);
+            }
+
+            // Visual feedback
+            tapIndicator.classList.add('show');
+            setTimeout(() => tapIndicator.classList.remove('show'), 200);
+
+            // Update sync display
+            updateSyncDisplay();
+        }
+
+        function updateSyncDisplay() {
+            const sync = calculateSync();
+            const percent = Math.round(sync * 100);
+
+            syncFill.style.width = `${percent}%`;
+            syncScore.textContent = `${percent}%`;
+
+            // Color based on sync level
+            if (sync > 0.7) {
+                syncScore.style.color = '#4a9eff';
+                showMessage('High coherence. The field is open.');
+            } else if (sync > 0.4) {
+                syncScore.style.color = '#6a5acd';
+                showMessage('Approaching sync. Keep breathing.');
+            } else {
+                syncScore.style.color = '#666';
+            }
+        }
+
+        function showMessage(text) {
+            messageEl.textContent = text;
+            messageEl.classList.add('show');
+            setTimeout(() => messageEl.classList.remove('show'), 3000);
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // Audio
+        // ═══════════════════════════════════════════════════════════════
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function playExhaleTone() {
+            if (!audioEnabled || !audioCtx) return;
+
+            const now = Date.now();
+            if (now - lastExhaleTone < CYCLE_TIME * 800) return; // Debounce
+            lastExhaleTone = now;
+
+            // Soft, calming tone
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+
+            oscillator.frequency.value = 220; // A3
+            oscillator.type = 'sine';
+
+            gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
+            gainNode.gain.linearRampToValueAtTime(0.1, audioCtx.currentTime + 0.1);
+            gainNode.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.5);
+
+            oscillator.start(audioCtx.currentTime);
+            oscillator.stop(audioCtx.currentTime + 0.5);
+        }
+
+        function toggleAudio() {
+            initAudio();
+            audioEnabled = !audioEnabled;
+            audioToggle.textContent = audioEnabled ? 'Sound On' : 'Sound Off';
+            audioToggle.classList.toggle('active', audioEnabled);
+
+            if (audioEnabled && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // Render loop
+        // ═══════════════════════════════════════════════════════════════
+
+        function render() {
+            const breath = getBreathState(getPhase());
+
+            // Update circle size (60px to 180px based on amplitude)
+            const minSize = 60;
+            const maxSize = 180;
+            const size = minSize + (breath.amplitude * (maxSize - minSize));
+            breathCircle.style.width = `${size}px`;
+            breathCircle.style.height = `${size}px`;
+
+            // Update circle color for exhale
+            if (breath.state === 'exhale' || breath.state === 'ground') {
+                breathCircle.classList.add('exhale');
+            } else {
+                breathCircle.classList.remove('exhale');
+            }
+
+            // Update state text
+            stateSymbol.textContent = breath.symbol;
+            stateText.textContent = breath.state;
+
+            // Update phase dots
+            Object.keys(dots).forEach(key => {
+                dots[key].classList.remove('active', 'exhale-active');
+            });
+            if (breath.state === 'exhale') {
+                dots[breath.state].classList.add('exhale-active');
+            } else {
+                dots[breath.state].classList.add('active');
+            }
+
+            // Play exhale tone at transition
+            if (breath.phase > 0.49 && breath.phase < 0.52) {
+                playExhaleTone();
+            }
+
+            requestAnimationFrame(render);
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // Event listeners
+        // ═══════════════════════════════════════════════════════════════
+
+        // Tap/click on container
+        breathContainer.addEventListener('click', registerTap);
+
+        // Spacebar + ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                registerTap();
+            } else if (e.key === 'Escape') {
+                window.location.href = '/navigator';
+            }
+        });
+
+        // Touch support
+        breathContainer.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            registerTap();
+        });
+
+        // Audio toggle
+        audioToggle.addEventListener('click', toggleAudio);
+
+        // Start render loop
+        render();
+
+        // Initial message
+        setTimeout(() => {
+            showMessage('Watch the circle. Breathe with it.');
+        }, 1000);
+
+        // ═══════════════════════════════════════════════════════════════
+        // Chat with Breath-Timed Responses
+        // ═══════════════════════════════════════════════════════════════
+
+        const chatContainer = document.getElementById('chatContainer');
+        const chatMessages = document.getElementById('chatMessages');
+        const chatForm = document.getElementById('chatForm');
+        const chatInput = document.getElementById('chatInput');
+        const modeToggle = document.getElementById('modeToggle');
+
+        let pendingResponse = null;
+        let chatMode = false;
+
+        modeToggle.addEventListener('click', () => {
+            chatMode = !chatMode;
+            chatContainer.style.display = chatMode ? 'block' : 'none';
+            modeToggle.textContent = chatMode ? 'Hide Chat' : 'Show Chat';
+        });
+
+        chatForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const query = chatInput.value.trim();
+            if (!query) return;
+
+            // Add user message
+            addMessage(query, 'user');
+            chatInput.value = '';
+
+            // Add waiting message (will be revealed on exhale)
+            const waitingMsg = addMessage('...breathing...', 'ai', true);
+
+            // Fetch response from API
+            try {
+                const resp = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ query, user_id: 'web' })
+                });
+                const data = await resp.json();
+
+                // Store response - will be revealed on next exhale
+                pendingResponse = {
+                    element: waitingMsg,
+                    text: data.response || 'I hear you.',
+                    state: data.state || {}
+                };
+
+            } catch (err) {
+                pendingResponse = {
+                    element: waitingMsg,
+                    text: 'Connection to the field lost. Breathe.',
+                    state: {}
+                };
+            }
+        });
+
+        function addMessage(text, type, waiting = false) {
+            const msg = document.createElement('div');
+            msg.className = `chat-message ${type}`;
+            if (waiting) msg.classList.add('waiting');
+            msg.textContent = text;
+            chatMessages.appendChild(msg);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            return msg;
+        }
+
+        // Reveal pending response on exhale
+        function checkExhaleReveal() {
+            if (!pendingResponse) return;
+
+            const breath = getBreathState(getPhase());
+
+            // Reveal on exhale phase (0.5-0.75)
+            if (breath.state === 'exhale' && pendingResponse) {
+                const { element, text, state } = pendingResponse;
+
+                // Update message content
+                element.textContent = text;
+                element.classList.remove('waiting');
+
+                // Fade in
+                setTimeout(() => {
+                    element.classList.add('visible');
+                }, 50);
+
+                // Show glyph if present
+                if (state.glyph) {
+                    showMessage(`[${state.glyph}] Zλ=${state.zeta_lambda || '?'}`);
+                }
+
+                pendingResponse = null;
+            }
+        }
+
+        // Add exhale reveal check to render loop
+        const originalRender = render;
+        function renderWithChat() {
+            originalRender();
+            checkExhaleReveal();
+        }
+
+        // Override render
+        function render() {
+            const breath = getBreathState(getPhase());
+
+            // Update circle size
+            const minSize = 60;
+            const maxSize = 180;
+            const size = minSize + (breath.amplitude * (maxSize - minSize));
+            breathCircle.style.width = `${size}px`;
+            breathCircle.style.height = `${size}px`;
+
+            // Update circle color for exhale
+            if (breath.state === 'exhale' || breath.state === 'ground') {
+                breathCircle.classList.add('exhale');
+            } else {
+                breathCircle.classList.remove('exhale');
+            }
+
+            // Update state text
+            stateSymbol.textContent = breath.symbol;
+            stateText.textContent = breath.state;
+
+            // Update phase dots
+            Object.keys(dots).forEach(key => {
+                dots[key].classList.remove('active', 'exhale-active');
+            });
+            if (breath.state === 'exhale') {
+                dots[breath.state].classList.add('exhale-active');
+            } else {
+                dots[breath.state].classList.add('active');
+            }
+
+            // Play exhale tone
+            if (breath.phase > 0.49 && breath.phase < 0.52) {
+                playExhaleTone();
+            }
+
+            // Check for pending response reveal
+            checkExhaleReveal();
+
+            requestAnimationFrame(render);
+        }
+
+        // Restart render with chat support
+        render();
+    </script>
+</body>
+</html>

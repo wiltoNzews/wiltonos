@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head><title>Memory Test</title></head>
+<body style="background:#0a0a0a; color:#e0e0e0; font-family:monospace; padding:40px;">
+<h1>WiltonOS Memory Test</h1>
+<input id="q" placeholder="Search..." style="padding:10px; width:300px; font-size:16px;">
+<button onclick="search()">Search</button>
+<pre id="result" style="margin-top:20px; white-space:pre-wrap;"></pre>
+<script>
+async function search() {
+    const q = document.getElementById('q').value;
+    document.getElementById('result').textContent = 'Searching...';
+    try {
+        // Force user=wilton to bypass cookie
+        const res = await fetch('/api/memory/search?q=' + encodeURIComponent(q) + '&limit=3&user=wilton');
+        const data = await res.json();
+        document.getElementById('result').textContent = JSON.stringify(data, null, 2);
+    } catch(e) {
+        document.getElementById('result').textContent = 'Error: ' + e.message;
+    }
+}
+</script>
+</body>
+</html>

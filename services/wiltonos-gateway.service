@@ -1,0 +1,17 @@
+[Unit]
+Description=WiltonOS Gateway (FastAPI)
+After=network.target ollama.service wiltonos-daemon.service
+Wants=wiltonos-daemon.service
+
+[Service]
+Type=simple
+User=zews
+WorkingDirectory=/home/zews/wiltonos
+ExecStart=/home/zews/glyph-net/venv/bin/python3 /home/zews/wiltonos/gateway.py --port 8000
+Restart=on-failure
+RestartSec=10
+Environment=HOME=/home/zews
+Environment=PATH=/usr/local/bin:/usr/bin:/bin
+
+[Install]
+WantedBy=multi-user.target

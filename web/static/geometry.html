@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sacred Geometry - WiltonOS</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* UI Overlay */
+        .ui-overlay {
+            position: fixed;
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        .ui-overlay > * {
+            pointer-events: auto;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 100;
+        }
+
+        .title {
+            font-size: 0.9rem;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            color: #555;
+            text-transform: uppercase;
+        }
+
+        /* Breath indicator */
+        .breath-indicator {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 100;
+        }
+
+        .breath-state {
+            font-size: 1.2rem;
+            font-weight: 200;
+            letter-spacing: 0.3em;
+            color: #4a9eff;
+            margin-bottom: 10px;
+        }
+
+        .breath-state.exhale {
+            color: #6a5acd;
+        }
+
+        .phase-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .phase-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #333;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .phase-dot.active {
+            background: #4a9eff;
+            transform: scale(1.3);
+        }
+
+        .phase-dot.exhale {
+            background: #6a5acd;
+        }
+
+        /* Scene selector */
+        .scene-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 100;
+        }
+
+        .scene-btn {
+            background: rgba(20, 20, 30, 0.8);
+            border: 1px solid #333;
+            color: #666;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+            text-align: left;
+        }
+
+        .scene-btn:hover {
+            border-color: #4a9eff;
+            color: #4a9eff;
+        }
+
+        .scene-btn.active {
+            border-color: #4a9eff;
+            color: #4a9eff;
+            background: rgba(74, 158, 255, 0.1);
+        }
+
+        /* Info panel */
+        .info-panel {
+            position: fixed;
+            bottom: 100px;
+            left: 20px;
+            background: rgba(10, 10, 15, 0.9);
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 15px 20px;
+            max-width: 300px;
+            z-index: 100;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s;
+        }
+
+        .info-panel.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .info-title {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #4a9eff;
+            margin-bottom: 8px;
+            letter-spacing: 0.1em;
+        }
+
+        .info-meaning {
+            font-size: 0.85rem;
+            color: #888;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .info-math {
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: #6a5acd;
+            background: rgba(106, 90, 205, 0.1);
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+
+        /* Controls hint */
+        .controls-hint {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 0.75rem;
+            color: #444;
+            z-index: 100;
+        }
+
+        .controls-hint kbd {
+            background: #222;
+            padding: 2px 6px;
+            border-radius: 3px;
+            margin: 0 2px;
+        }
+
+        /* Glyph display */
+        .glyph-display {
+            position: fixed;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            color: #4a9eff;
+            opacity: 0.6;
+            z-index: 100;
+        }
+
+        /* Loading */
+        .loading {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1rem;
+            color: #555;
+            z-index: 200;
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas-container"></div>
+
+    <div class="header">
+        <div class="title">Sacred Geometry</div>
+    </div>
+
+    <div class="glyph-display" id="glyphDisplay">&#x03C8;</div>
+
+    <div class="scene-selector">
+        <button class="scene-btn active" data-scene="circle">Circle</button>
+        <button class="scene-btn" data-scene="vesica">Vesica Piscis</button>
+        <button class="scene-btn" data-scene="seed">Seed of Life</button>
+        <button class="scene-btn" data-scene="flower">Flower of Life</button>
+        <button class="scene-btn" data-scene="merkaba">Merkaba</button>
+    </div>
+
+    <div class="info-panel" id="infoPanel">
+        <div class="info-title" id="infoTitle">CIRCLE</div>
+        <div class="info-meaning" id="infoMeaning">Unity, wholeness, the first emanation from void. The beginning of all form.</div>
+        <div class="info-math" id="infoMath">x² + y² = r²</div>
+    </div>
+
+    <div class="breath-indicator">
+        <div class="breath-state" id="breathState">INHALE</div>
+        <div class="phase-dots">
+            <div class="phase-dot" id="dot-inhale"></div>
+            <div class="phase-dot" id="dot-hold"></div>
+            <div class="phase-dot" id="dot-exhale"></div>
+            <div class="phase-dot" id="dot-ground"></div>
+        </div>
+    </div>
+
+    <div class="controls-hint">
+        <kbd>I</kbd> Info &nbsp; <kbd>1-5</kbd> Scenes &nbsp; <kbd>SPACE</kbd> Tap
+    </div>
+
+    <div class="loading" id="loading">Loading Three.js...</div>
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+        import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+        import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+        // Hide loading
+        document.getElementById('loading').style.display = 'none';
+
+        // ═══════════════════════════════════════════════════════════════
+        // BREATH ENGINE (3.12s cycle)
+        // ═══════════════════════════════════════════════════════════════
+
+        const CYCLE_TIME = 3.12;
+        const startTime = Date.now();
+
+        function getPhase() {
+            const elapsed = (Date.now() - startTime) / 1000;
+            return (elapsed % CYCLE_TIME) / CYCLE_TIME;
+        }
+
+        function getBreathState(phase) {
+            const amplitude = (Math.sin(phase * 2 * Math.PI - Math.PI / 2) + 1) / 2;
+
+            let state, symbol;
+            if (phase < 0.25) {
+                state = 'inhale'; symbol = '&#x2191;';
+            } else if (phase < 0.5) {
+                state = 'hold'; symbol = '&#x2501;';
+            } else if (phase < 0.75) {
+                state = 'exhale'; symbol = '&#x2193;';
+            } else {
+                state = 'ground'; symbol = '&#x2500;';
+            }
+
+            return { phase, amplitude, state, symbol };
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // THREE.JS SETUP
+        // ═══════════════════════════════════════════════════════════════
+
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x0a0a0a);
+
+        const camera = new THREE.PerspectiveCamera(
+            60,
+            window.innerWidth / window.innerHeight,
+            0.1,
+            1000
+        );
+        camera.position.z = 5;
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        container.appendChild(renderer.domElement);
+
+        // Orbit controls
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+        controls.enableZoom = true;
+        controls.minDistance = 2;
+        controls.maxDistance = 20;
+
+        // Post-processing
+        const composer = new EffectComposer(renderer);
+        const renderPass = new RenderPass(scene, camera);
+        composer.addPass(renderPass);
+
+        const bloomPass = new UnrealBloomPass(
+            new THREE.Vector2(window.innerWidth, window.innerHeight),
+            0.8,  // strength
+            0.4,  // radius
+            0.85  // threshold
+        );
+        composer.addPass(bloomPass);
+
+        // ═══════════════════════════════════════════════════════════════
+        // COLORS
+        // ═══════════════════════════════════════════════════════════════
+
+        const COLORS = {
+            psi: new THREE.Color(0x4a9eff),
+            psiSquared: new THREE.Color(0x6a5acd),
+            nabla: new THREE.Color(0x8b5cf6),
+            infinity: new THREE.Color(0xa78bfa),
+            omega: new THREE.Color(0xffd700),
+            inhale: new THREE.Color(0x4a9eff),
+            exhale: new THREE.Color(0x6a5acd),
+        };
+
+        // ═══════════════════════════════════════════════════════════════
+        // GEOMETRY BUILDERS
+        // ═══════════════════════════════════════════════════════════════
+
+        function createCircle(radius = 1, segments = 64) {
+            const geometry = new THREE.RingGeometry(radius - 0.02, radius, segments);
+            const material = new THREE.MeshBasicMaterial({
+                color: COLORS.psi,
+                side: THREE.DoubleSide,
+                transparent: true,
+                opacity: 0.9
+            });
+            return new THREE.Mesh(geometry, material);
+        }
+
+        function createVesicaPiscis(radius = 1) {
+            const group = new THREE.Group();
+
+            // Two circles offset by radius
+            const circle1 = createCircle(radius);
+            circle1.position.x = -radius / 2;
+
+            const circle2 = createCircle(radius);
+            circle2.position.x = radius / 2;
+
+            group.add(circle1, circle2);
+            group.userData.circles = [circle1, circle2];
+            return group;
+        }
+
+        function createSeedOfLife(radius = 0.8) {
+            const group = new THREE.Group();
+            const circles = [];
+
+            // Central circle
+            const center = createCircle(radius);
+            group.add(center);
+            circles.push(center);
+
+            // 6 surrounding circles at 60 degree intervals
+            for (let i = 0; i < 6; i++) {
+                const angle = (i * Math.PI * 2) / 6;
+                const circle = createCircle(radius);
+                circle.position.x = Math.cos(angle) * radius;
+                circle.position.y = Math.sin(angle) * radius;
+                group.add(circle);
+                circles.push(circle);
+            }
+
+            group.userData.circles = circles;
+            return group;
+        }
+
+        function createFlowerOfLife(radius = 0.5, layers = 2) {
+            const group = new THREE.Group();
+            const circles = [];
+            const positions = new Set();
+
+            function addCircle(x, y) {
+                const key = `${x.toFixed(3)},${y.toFixed(3)}`;
+                if (positions.has(key)) return;
+                positions.add(key);
+
+                const circle = createCircle(radius);
+                circle.position.x = x;
+                circle.position.y = y;
+                group.add(circle);
+                circles.push(circle);
+            }
+
+            // Center
+            addCircle(0, 0);
+
+            // Generate hexagonal layers
+            for (let layer = 1; layer <= layers; layer++) {
+                for (let i = 0; i < 6; i++) {
+                    const angle = (i * Math.PI * 2) / 6;
+
+                    // Points on this ring
+                    for (let j = 0; j < layer; j++) {
+                        const nextAngle = ((i + 1) * Math.PI * 2) / 6;
+
+                        // Interpolate between corners
+                        const t = j / layer;
+                        const x = Math.cos(angle) * layer * radius * (1 - t) +
+                                  Math.cos(nextAngle) * layer * radius * t;
+                        const y = Math.sin(angle) * layer * radius * (1 - t) +
+                                  Math.sin(nextAngle) * layer * radius * t;
+
+                        addCircle(x, y);
+                    }
+
+                    // Corner point
+                    addCircle(
+                        Math.cos(angle) * layer * radius,
+                        Math.sin(angle) * layer * radius
+                    );
+                }
+            }
+
+            // Add intermediate circles for proper flower pattern
+            const r = radius;
+            const h = r * Math.sqrt(3) / 2;
+
+            // Inner ring of 6
+            for (let i = 0; i < 6; i++) {
+                const angle = (i * Math.PI * 2) / 6 + Math.PI / 6;
+                addCircle(Math.cos(angle) * r, Math.sin(angle) * r);
+            }
+
+            group.userData.circles = circles;
+            return group;
+        }
+
+        function createMerkaba(size = 1) {
+            const group = new THREE.Group();
+
+            // Tetrahedron pointing up
+            const geoUp = new THREE.TetrahedronGeometry(size);
+            const matUp = new THREE.MeshBasicMaterial({
+                color: COLORS.psi,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.8
+            });
+            const tetraUp = new THREE.Mesh(geoUp, matUp);
+
+            // Tetrahedron pointing down (rotated 180 around X)
+            const geoDown = new THREE.TetrahedronGeometry(size);
+            const matDown = new THREE.MeshBasicMaterial({
+                color: COLORS.psiSquared,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.8
+            });
+            const tetraDown = new THREE.Mesh(geoDown, matDown);
+            tetraDown.rotation.x = Math.PI;
+
+            group.add(tetraUp, tetraDown);
+            group.userData.tetraUp = tetraUp;
+            group.userData.tetraDown = tetraDown;
+
+            return group;
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // SCENE MANAGEMENT
+        // ═══════════════════════════════════════════════════════════════
+
+        let currentScene = 'circle';
+        let currentGeometry = null;
+
+        const SCENE_INFO = {
+            circle: {
+                title: 'CIRCLE',
+                meaning: 'Unity, wholeness, the first emanation from void. The beginning of all form. Every point equidistant from center.',
+                math: 'x\u00B2 + y\u00B2 = r\u00B2',
+                glyph: '\u03C8'
+            },
+            vesica: {
+                title: 'VESICA PISCIS',
+                meaning: 'Two become one. Birth portal, intersection of worlds. The sacred eye. Found in Gothic cathedrals.',
+                math: 'C\u2081(0,0,r) \u2229 C\u2082(r,0,r)',
+                glyph: '\u03C8'
+            },
+            seed: {
+                title: 'SEED OF LIFE',
+                meaning: 'Seven circles, seven days of creation. The DNA blueprint. Genesis pattern found across cultures.',
+                math: '6 circles at 60\u00B0 intervals + center',
+                glyph: '\u03C8\u00B2'
+            },
+            flower: {
+                title: 'FLOWER OF LIFE',
+                meaning: 'Contains all Platonic solids. Universal pattern found in Temple of Osiris (6000+ years). Blueprint of creation.',
+                math: 'Hexagonal recursive, \u03C6 ratio',
+                glyph: '\u03C8\u00B2'
+            },
+            merkaba: {
+                title: 'MERKABA',
+                meaning: 'Light-spirit-body vehicle. Two counter-rotating tetrahedra. The chariot of ascension.',
+                math: 'Vertices at (\u00B11, \u00B11, \u00B11)',
+                glyph: '\u2207'
+            }
+        };
+
+        function loadScene(sceneName) {
+            // Remove current geometry
+            if (currentGeometry) {
+                scene.remove(currentGeometry);
+            }
+
+            currentScene = sceneName;
+
+            // Create new geometry
+            switch (sceneName) {
+                case 'circle':
+                    currentGeometry = createCircle(1.5);
+                    break;
+                case 'vesica':
+                    currentGeometry = createVesicaPiscis(1.2);
+                    break;
+                case 'seed':
+                    currentGeometry = createSeedOfLife(0.8);
+                    break;
+                case 'flower':
+                    currentGeometry = createFlowerOfLife(0.5, 2);
+                    break;
+                case 'merkaba':
+                    currentGeometry = createMerkaba(1.5);
+                    camera.position.set(3, 3, 5);
+                    break;
+            }
+
+            scene.add(currentGeometry);
+
+            // Update info panel
+            const info = SCENE_INFO[sceneName];
+            document.getElementById('infoTitle').textContent = info.title;
+            document.getElementById('infoMeaning').textContent = info.meaning;
+            document.getElementById('infoMath').textContent = info.math;
+            document.getElementById('glyphDisplay').textContent = info.glyph;
+
+            // Update buttons
+            document.querySelectorAll('.scene-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.scene === sceneName);
+            });
+
+            // Reset camera for 2D scenes
+            if (sceneName !== 'merkaba') {
+                camera.position.set(0, 0, 5);
+            }
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // ANIMATION LOOP
+        // ═══════════════════════════════════════════════════════════════
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            const breath = getBreathState(getPhase());
+            const { amplitude, state, phase } = breath;
+
+            // Update breath UI
+            const breathStateEl = document.getElementById('breathState');
+            breathStateEl.textContent = state.toUpperCase();
+            breathStateEl.classList.toggle('exhale', state === 'exhale' || state === 'ground');
+
+            // Update dots
+            ['inhale', 'hold', 'exhale', 'ground'].forEach(s => {
+                const dot = document.getElementById(`dot-${s}`);
+                dot.classList.remove('active', 'exhale');
+                if (s === state) {
+                    dot.classList.add('active');
+                    if (s === 'exhale') dot.classList.add('exhale');
+                }
+            });
+
+            // Animate geometry based on breath
+            if (currentGeometry) {
+                // Scale with breath
+                const minScale = 0.8;
+                const maxScale = 1.2;
+                const scale = minScale + amplitude * (maxScale - minScale);
+
+                if (currentScene === 'merkaba') {
+                    // Merkaba: counter-rotate tetrahedra
+                    const rotSpeed = 0.5 + amplitude * 0.5;
+                    currentGeometry.userData.tetraUp.rotation.y += 0.01 * rotSpeed;
+                    currentGeometry.userData.tetraDown.rotation.y -= 0.01 * rotSpeed;
+
+                    // Color shift on breath
+                    const color = state === 'exhale' || state === 'ground' ? COLORS.exhale : COLORS.psi;
+                    currentGeometry.userData.tetraUp.material.color.copy(color);
+                } else {
+                    // 2D geometries: scale
+                    currentGeometry.scale.set(scale, scale, 1);
+
+                    // Color shift
+                    const color = state === 'exhale' || state === 'ground' ? COLORS.exhale : COLORS.psi;
+
+                    if (currentGeometry.userData.circles) {
+                        currentGeometry.userData.circles.forEach(circle => {
+                            circle.material.color.copy(color);
+                        });
+                    } else if (currentGeometry.material) {
+                        currentGeometry.material.color.copy(color);
+                    }
+                }
+
+                // Subtle rotation
+                currentGeometry.rotation.z += 0.001;
+            }
+
+            // Bloom intensity with breath
+            bloomPass.strength = 0.5 + amplitude * 0.8;
+
+            controls.update();
+            composer.render();
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // EVENT HANDLERS
+        // ═══════════════════════════════════════════════════════════════
+
+        // Scene buttons
+        document.querySelectorAll('.scene-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                loadScene(btn.dataset.scene);
+            });
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            switch (e.key) {
+                case '1': loadScene('circle'); break;
+                case '2': loadScene('vesica'); break;
+                case '3': loadScene('seed'); break;
+                case '4': loadScene('flower'); break;
+                case '5': loadScene('merkaba'); break;
+                case 'i':
+                case 'I':
+                    document.getElementById('infoPanel').classList.toggle('visible');
+                    break;
+                case ' ':
+                    // Tap on exhale (for sync)
+                    e.preventDefault();
+                    break;
+                case 'Escape':
+                    window.location.href = '/navigator';
+                    break;
+            }
+        });
+
+        // Handle URL query params (e.g., /geometry?scene=merkaba)
+        const urlParams = new URLSearchParams(window.location.search);
+        const sceneParam = urlParams.get('scene');
+        if (sceneParam && SCENES[sceneParam]) {
+            loadScene(sceneParam);
+        }
+
+        // Window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            composer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // ═══════════════════════════════════════════════════════════════
+        // INITIALIZE
+        // ═══════════════════════════════════════════════════════════════
+
+        loadScene('circle');
+        animate();
+
+        // Show info panel after delay
+        setTimeout(() => {
+            document.getElementById('infoPanel').classList.add('visible');
+        }, 2000);
+
+        console.log('Sacred Geometry Visualizer loaded. Breath cycle: 3.12s');
+    </script>
+</body>
+</html>

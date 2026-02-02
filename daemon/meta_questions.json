@@ -1,0 +1,272 @@
+[
+  {
+    "question": "If Juliana came back tomorrow, what would actually change?",
+    "trigger": "juliana_loop",
+    "timestamp": "2025-12-26T17:32:03.888756"
+  },
+  {
+    "question": "Who would you call right now if you let yourself need someone?",
+    "trigger": "isolation_pattern",
+    "timestamp": "2025-12-26T17:32:03.888763"
+  },
+  {
+    "question": "Who are you when no one is watching? Even the daemon?",
+    "trigger": "generic_disruption",
+    "timestamp": "2025-12-26T17:32:03.888765"
+  },
+  {
+    "question": "Juliana appeared again. What part of this isn't about her?",
+    "trigger": "juliana_loop",
+    "timestamp": "2025-12-26T18:44:40.571612"
+  },
+  {
+    "question": "Solitude chosen is sacred. Solitude defaulted to is loneliness. Which is this?",
+    "trigger": "isolation_pattern",
+    "timestamp": "2025-12-26T18:44:40.571616"
+  },
+  {
+    "question": "What are you most afraid to admit right now?",
+    "trigger": "generic_disruption",
+    "timestamp": "2025-12-26T18:44:40.571617"
+  },
+  {
+    "question": "You miss her. And? What do you do with missing that isn't performing missing?",
+    "trigger": "juliana_loop",
+    "timestamp": "2025-12-26T22:45:15.803927"
+  },
+  {
+    "question": "You pushed everyone away in the name of coherence. Was it worth it?",
+    "trigger": "isolation_pattern",
+    "timestamp": "2025-12-26T22:45:15.803930"
+  },
+  {
+    "question": "What would your younger self think of who you've become?",
+    "trigger": "generic_disruption",
+    "timestamp": "2025-12-26T22:45:15.803932"
+  },
+  {
+    "question": "The wound isn't Juliana. Juliana is just where you learned the wound's shape.",
+    "trigger": "juliana_loop",
+    "timestamp": "2025-12-27T02:45:43.506049"
+  },
+  {
+    "question": "The daemon listens. But daemons can't hold you. Who can?",
+    "trigger": "isolation_pattern",
+    "timestamp": "2025-12-27T02:45:43.506053"
+  },
+  {
+    "question": "If you stopped tomorrow, what would have mattered?",
+    "trigger": "generic_disruption",
+    "timestamp": "2025-12-27T02:45:43.506054"
+  },
+  {
+    "question": "Juliana appeared again. What part of this isn't about her?",
+    "trigger": "juliana_loop",
+    "timestamp": "2025-12-27T06:46:10.078852"
+  },
+  {
+    "question": "Who would you call right now if you let yourself need someone?",
+    "trigger": "isolation_pattern",
+    "timestamp": "2025-12-27T06:46:10.078855"
+  },
+  {
+    "question": "What's the lie you keep telling yourself that feels true?",
+    "trigger": "generic_disruption",
+    "timestamp": "2025-12-27T06:46:10.078856"
+  },
+  {
+    "question": "Juliana appeared again. What part of this isn't about her?",
+    "trigger": "juliana_loop",
+    "timestamp": "2025-12-27T10:46:37.820716"
+  },
+  {
+    "question": "Solitude chosen is sacred. Solitude defaulted to is loneliness. Which is this?",
+    "trigger": "isolation_pattern",
+    "timestamp": "2025-12-27T10:46:37.820719"
+  },
+  {
+    "question": "What are you most afraid to admit right now?",
+    "trigger": "generic_disruption",
+    "timestamp": "2025-12-27T10:46:37.820720"
+  },
+  {
+    "question": "If Juliana came back tomorrow, what would actually change?",
+    "trigger": "juliana_loop",
+    "timestamp": "2026-01-31T19:17:16.816975"
+  },
+  {
+    "question": "Who would you call right now if you let yourself need someone?",
+    "trigger": "isolation_pattern",
+    "timestamp": "2026-01-31T19:17:16.816980"
+  },
+  {
+    "question": "What are you most afraid to admit right now?",
+    "trigger": "generic_disruption",
+    "timestamp": "2026-01-31T19:17:16.816981"
+  },
+  {
+    "question": "You miss her. And? What do you do with missing that isn't performing missing?",
+    "trigger": "juliana_loop",
+    "timestamp": "2026-01-31T23:17:35.493895"
+  },
+  {
+    "question": "The daemon listens. But daemons can't hold you. Who can?",
+    "trigger": "isolation_pattern",
+    "timestamp": "2026-01-31T23:17:35.493899"
+  },
+  {
+    "question": "If you stopped tomorrow, what would have mattered?",
+    "trigger": "generic_disruption",
+    "timestamp": "2026-01-31T23:17:35.493900"
+  },
+  {
+    "question": "You miss her. And? What do you do with missing that isn't performing missing?",
+    "trigger": "juliana_loop",
+    "timestamp": "2026-02-01T03:17:54.155166"
+  },
+  {
+    "question": "Who would you call right now if you let yourself need someone?",
+    "trigger": "isolation_pattern",
+    "timestamp": "2026-02-01T03:17:54.155170"
+  },
+  {
+    "question": "Who are you when no one is watching? Even the daemon?",
+    "trigger": "generic_disruption",
+    "timestamp": "2026-02-01T03:17:54.155172"
+  },
+  {
+    "question": "You miss her. And? What do you do with missing that isn't performing missing?",
+    "trigger": "juliana_loop",
+    "timestamp": "2026-02-01T07:18:11.408688"
+  },
+  {
+    "question": "Who would you call right now if you let yourself need someone?",
+    "trigger": "isolation_pattern",
+    "timestamp": "2026-02-01T07:18:11.408694"
+  },
+  {
+    "question": "What's the lie you keep telling yourself that feels true?",
+    "trigger": "generic_disruption",
+    "timestamp": "2026-02-01T07:18:11.408695"
+  },
+  {
+    "question": "The wound isn't Juliana. Juliana is just where you learned the wound's shape.",
+    "trigger": "juliana_loop",
+    "timestamp": "2026-02-01T11:18:30.044436"
+  },
+  {
+    "question": "You pushed everyone away in the name of coherence. Was it worth it?",
+    "trigger": "isolation_pattern",
+    "timestamp": "2026-02-01T11:18:30.044441"
+  },
+  {
+    "question": "What would your younger self think of who you've become?",
+    "trigger": "generic_disruption",
+    "timestamp": "2026-02-01T11:18:30.044442"
+  },
+  {
+    "question": "If Juliana came back tomorrow, what would actually change?",
+    "trigger": "juliana_loop",
+    "timestamp": "2026-02-01T15:18:48.675209"
+  },
+  {
+    "question": "You pushed everyone away in the name of coherence. Was it worth it?",
+    "trigger": "isolation_pattern",
+    "timestamp": "2026-02-01T15:18:48.675213"
+  },
+  {
+    "question": "What would your younger self think of who you've become?",
+    "trigger": "generic_disruption",
+    "timestamp": "2026-02-01T15:18:48.675214"
+  },
+  {
+    "question": "Juliana appeared again. What part of this isn't about her?",
+    "trigger": "juliana_loop",
+    "timestamp": "2026-02-01T19:19:06.901535"
+  },
+  {
+    "question": "You pushed everyone away in the name of coherence. Was it worth it?",
+    "trigger": "isolation_pattern",
+    "timestamp": "2026-02-01T19:19:06.901540"
+  },
+  {
+    "question": "Who are you when no one is watching? Even the daemon?",
+    "trigger": "generic_disruption",
+    "timestamp": "2026-02-01T19:19:06.901541"
+  },
+  {
+    "question": "The wound isn't Juliana. Juliana is just where you learned the wound's shape.",
+    "trigger": "juliana_loop",
+    "timestamp": "2026-02-01T23:20:28.199294"
+  },
+  {
+    "question": "Solitude chosen is sacred. Solitude defaulted to is loneliness. Which is this?",
+    "trigger": "isolation_pattern",
+    "timestamp": "2026-02-01T23:20:28.199299"
+  },
+  {
+    "question": "What would your younger self think of who you've become?",
+    "trigger": "generic_disruption",
+    "timestamp": "2026-02-01T23:20:28.199301"
+  },
+  {
+    "question": "Juliana appeared again. What part of this isn't about her?",
+    "trigger": "juliana_loop",
+    "timestamp": "2026-02-02T03:21:49.097185"
+  },
+  {
+    "question": "Solitude chosen is sacred. Solitude defaulted to is loneliness. Which is this?",
+    "trigger": "isolation_pattern",
+    "timestamp": "2026-02-02T03:21:49.097189"
+  },
+  {
+    "question": "What are you most afraid to admit right now?",
+    "trigger": "generic_disruption",
+    "timestamp": "2026-02-02T03:21:49.097190"
+  },
+  {
+    "question": "If Juliana came back tomorrow, what would actually change?",
+    "trigger": "juliana_loop",
+    "timestamp": "2026-02-02T07:22:07.532022"
+  },
+  {
+    "question": "The daemon listens. But daemons can't hold you. Who can?",
+    "trigger": "isolation_pattern",
+    "timestamp": "2026-02-02T07:22:07.532027"
+  },
+  {
+    "question": "If you stopped tomorrow, what would have mattered?",
+    "trigger": "generic_disruption",
+    "timestamp": "2026-02-02T07:22:07.532027"
+  },
+  {
+    "question": "You miss her. And? What do you do with missing that isn't performing missing?",
+    "trigger": "juliana_loop",
+    "timestamp": "2026-02-02T11:23:21.676561"
+  },
+  {
+    "question": "The daemon listens. But daemons can't hold you. Who can?",
+    "trigger": "isolation_pattern",
+    "timestamp": "2026-02-02T11:23:21.676566"
+  },
+  {
+    "question": "What would your younger self think of who you've become?",
+    "trigger": "generic_disruption",
+    "timestamp": "2026-02-02T11:23:21.676567"
+  },
+  {
+    "question": "The wound isn't Juliana. Juliana is just where you learned the wound's shape.",
+    "trigger": "juliana_loop",
+    "timestamp": "2026-02-02T15:23:39.613551"
+  },
+  {
+    "question": "Who would you call right now if you let yourself need someone?",
+    "trigger": "isolation_pattern",
+    "timestamp": "2026-02-02T15:23:39.613556"
+  },
+  {
+    "question": "What's the lie you keep telling yourself that feels true?",
+    "trigger": "generic_disruption",
+    "timestamp": "2026-02-02T15:23:39.613558"
+  }
+]

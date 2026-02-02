@@ -1,0 +1,93 @@
+#!/bin/bash
+# Daemon control script
+# Usage: ./daemon_ctl start|stop|status|restart|logs
+
+DAEMON_DIR="$(dirname "$0")"
+PID_FILE="$DAEMON_DIR/.daemon.pid"
+LOG_FILE="$HOME/wiltonos/logs/breathing_daemon.log"
+
+case "$1" in
+    start)
+        if [ -f "$PID_FILE" ]; then
+            PID=$(cat "$PID_FILE")
+            if kill -0 "$PID" 2>/dev/null; then
+                echo "Daemon already running (PID $PID)"
+                exit 1
+            fi
+        fi
+        echo "Starting breathing daemon..."
+        mkdir -p "$HOME/wiltonos/logs"
+        nohup python3 "$DAEMON_DIR/breathing_daemon.py" >> "$LOG_FILE" 2>&1 &
+        sleep 2
+        if [ -f "$PID_FILE" ]; then
+            echo "Daemon started (PID $(cat $PID_FILE))"
+        else
+            echo "Daemon may have failed to start. Check logs:"
+            echo "  tail -f $LOG_FILE"
+        fi
+        ;;
+
+    stop)
+        if [ -f "$PID_FILE" ]; then
+            PID=$(cat "$PID_FILE")
+            echo "Stopping daemon (PID $PID)..."
+            kill "$PID" 2>/dev/null
+            sleep 2
+            if kill -0 "$PID" 2>/dev/null; then
+                echo "Force killing..."
+                kill -9 "$PID" 2>/dev/null
+            fi
+            rm -f "$PID_FILE"
+            echo "Daemon stopped."
+        else
+            echo "No daemon running (no PID file)"
+        fi
+        ;;
+
+    status)
+        if [ -f "$PID_FILE" ]; then
+            PID=$(cat "$PID_FILE")
+            if kill -0 "$PID" 2>/dev/null; then
+                echo "Daemon is running (PID $PID)"
+
+                # Show state
+                if [ -f "$DAEMON_DIR/.daemon_state" ]; then
+                    echo ""
+                    echo "State:"
+                    cat "$DAEMON_DIR/.daemon_state" | python3 -m json.tool 2>/dev/null || cat "$DAEMON_DIR/.daemon_state"
+                fi
+
+                # Show latest message
+                if [ -f "$DAEMON_DIR/messages/latest.txt" ]; then
+                    echo ""
+                    echo "Latest message:"
+                    cat "$DAEMON_DIR/messages/latest.txt"
+                fi
+            else
+                echo "Daemon not running (stale PID file)"
+                rm -f "$PID_FILE"
+            fi
+        else
+            echo "Daemon not running"
+        fi
+        ;;
+
+    restart)
+        "$0" stop
+        sleep 1
+        "$0" start
+        ;;
+
+    logs)
+        if [ -f "$LOG_FILE" ]; then
+            tail -f "$LOG_FILE"
+        else
+            echo "No log file found at $LOG_FILE"
+        fi
+        ;;
+
+    *)
+        echo "Usage: $0 {start|stop|status|restart|logs}"
+        exit 1
+        ;;
+esac

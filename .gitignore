@@ -1,0 +1,42 @@
+# Data - sensitive user memory
+data/
+*.db
+*.db-journal
+*.db-wal
+
+# Daemon runtime state
+daemon/.daemon*
+daemon/messages/
+daemon/seed.md
+
+# Logs
+logs/
+*.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Environment / secrets
+.env
+*.key
+.openrouter_key
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Embeddings / large files
+*.bin
+*.gguf
+*.safetensors
+
+# Witness output (generated, large)
+data/witness_output/

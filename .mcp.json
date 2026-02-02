@@ -1,0 +1,6 @@
+{
+  "wiltonos": {
+    "command": "python3",
+    "args": ["/home/zews/wiltonos/mcp_crystals.py"]
+  }
+}

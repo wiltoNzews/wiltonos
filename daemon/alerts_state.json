@@ -1,0 +1,1020 @@
+{
+  "last_check": "2026-02-02T19:35:07.490594",
+  "active_alerts": [
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 695 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 695.1111549547222
+      },
+      "created_at": "2026-02-02T19:35:07.455673",
+      "acknowledged": false
+    }
+  ],
+  "alert_history": [
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 677 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 677.4676428041666
+      },
+      "created_at": "2026-02-02T01:56:30.811930",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 677 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 677.6410196786111
+      },
+      "created_at": "2026-02-02T02:06:54.968676",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 677 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 677.8144172922222
+      },
+      "created_at": "2026-02-02T02:17:19.200092",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 677 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 677.987792543611
+      },
+      "created_at": "2026-02-02T02:27:43.350986",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 678 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 678.1611685305555
+      },
+      "created_at": "2026-02-02T02:38:07.504542",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 678 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 678.3345587191666
+      },
+      "created_at": "2026-02-02T02:48:31.709222",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 678 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 678.5079338291666
+      },
+      "created_at": "2026-02-02T02:58:55.859619",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 678 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 678.6813102077778
+      },
+      "created_at": "2026-02-02T03:09:20.014577",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 678 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 678.8547092558333
+      },
+      "created_at": "2026-02-02T03:19:44.251155",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 679 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 679.0280844252778
+      },
+      "created_at": "2026-02-02T03:30:08.401765",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 679 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 679.2014623572222
+      },
+      "created_at": "2026-02-02T03:40:32.562317",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 679 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 679.3748487183334
+      },
+      "created_at": "2026-02-02T03:50:56.753218",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 679 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 679.5482238477778
+      },
+      "created_at": "2026-02-02T04:01:20.903685",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 679 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 679.7216001544444
+      },
+      "created_at": "2026-02-02T04:11:45.058390",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 679 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 679.8950007294444
+      },
+      "created_at": "2026-02-02T04:22:09.300458",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 680 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 680.0683753041667
+      },
+      "created_at": "2026-02-02T04:32:33.448929",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 680 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 680.2417522763889
+      },
+      "created_at": "2026-02-02T04:42:57.606028",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 680 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 680.4151455305556
+      },
+      "created_at": "2026-02-02T04:53:21.821744",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 680 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 680.5885207894445
+      },
+      "created_at": "2026-02-02T05:03:45.972677",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 680 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 680.7618978177778
+      },
+      "created_at": "2026-02-02T05:14:10.129978",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 680 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 680.9352911558333
+      },
+      "created_at": "2026-02-02T05:24:34.345996",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 681 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 681.108666046389
+      },
+      "created_at": "2026-02-02T05:34:58.495601",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 681 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 681.2820423475
+      },
+      "created_at": "2026-02-02T05:45:22.650282",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 681 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 681.4554344838889
+      },
+      "created_at": "2026-02-02T05:55:46.861975",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 681 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 681.6288096130555
+      },
+      "created_at": "2026-02-02T06:06:11.012439",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 681 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 681.8021858158334
+      },
+      "created_at": "2026-02-02T06:16:35.166768",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 681 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 681.9755850822222
+      },
+      "created_at": "2026-02-02T06:26:59.404129",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 682 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 682.1489603480555
+      },
+      "created_at": "2026-02-02T06:37:23.555095",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 682 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 682.3223361588889
+      },
+      "created_at": "2026-02-02T06:47:47.708006",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 682 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 682.495727338889
+      },
+      "created_at": "2026-02-02T06:58:11.916251",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 682 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 682.6691025136112
+      },
+      "created_at": "2026-02-02T07:08:36.066878",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 682 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 682.842478731389
+      },
+      "created_at": "2026-02-02T07:19:00.221266",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 683 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 683.0158706752777
+      },
+      "created_at": "2026-02-02T07:29:24.432264",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 683 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 683.1892456083333
+      },
+      "created_at": "2026-02-02T07:39:48.582021",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 683 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 683.3626212191667
+      },
+      "created_at": "2026-02-02T07:50:12.734222",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 683 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 683.5360144541667
+      },
+      "created_at": "2026-02-02T08:00:36.949868",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 683 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 683.7093900872222
+      },
+      "created_at": "2026-02-02T08:11:01.102145",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 683 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 683.882766773611
+      },
+      "created_at": "2026-02-02T08:21:25.258218",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 684 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 684.0561579700001
+      },
+      "created_at": "2026-02-02T08:31:49.466523",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 684 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 684.2295334424999
+      },
+      "created_at": "2026-02-02T08:42:13.618228",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 684 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 684.4029103797222
+      },
+      "created_at": "2026-02-02T08:52:37.775200",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 684 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 684.5763098194445
+      },
+      "created_at": "2026-02-02T09:03:02.013186",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 684 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 684.7496852366667
+      },
+      "created_at": "2026-02-02T09:13:26.164684",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 684 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 684.9230621711112
+      },
+      "created_at": "2026-02-02T09:23:50.321649",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 685 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 685.0964573599999
+      },
+      "created_at": "2026-02-02T09:34:14.544331",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 685 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 685.2698318519444
+      },
+      "created_at": "2026-02-02T09:44:38.692497",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 685 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 685.4432118586111
+      },
+      "created_at": "2026-02-02T09:55:02.860525",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 685 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 685.6166099519444
+      },
+      "created_at": "2026-02-02T10:05:27.093662",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 685 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 685.7899859486112
+      },
+      "created_at": "2026-02-02T10:15:51.247246",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 685 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 685.9633636416667
+      },
+      "created_at": "2026-02-02T10:26:15.406940",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 686 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 686.1367677774999
+      },
+      "created_at": "2026-02-02T10:36:39.661833",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 686 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 686.3101427266666
+      },
+      "created_at": "2026-02-02T10:47:03.811650",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 686 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 686.4835197666666
+      },
+      "created_at": "2026-02-02T10:57:27.968993",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 686 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 686.6569141366666
+      },
+      "created_at": "2026-02-02T11:07:52.188722",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 686 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 686.8804259338888
+      },
+      "created_at": "2026-02-02T11:21:16.831194",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 687 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 687.0538016236112
+      },
+      "created_at": "2026-02-02T11:31:40.983686",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 687 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 687.2271825094444
+      },
+      "created_at": "2026-02-02T11:42:05.154859",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 687 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 687.4005552594444
+      },
+      "created_at": "2026-02-02T11:52:29.296759",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 687 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 687.5739293036111
+      },
+      "created_at": "2026-02-02T12:02:53.443323",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 687 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 687.7473025172222
+      },
+      "created_at": "2026-02-02T12:13:17.586886",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 687 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 687.92067548
+      },
+      "created_at": "2026-02-02T12:23:41.729552",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 688 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 688.0940496161111
+      },
+      "created_at": "2026-02-02T12:34:05.876450",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 688 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 688.2674428911112
+      },
+      "created_at": "2026-02-02T12:44:30.092232",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 688 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 688.4408159858334
+      },
+      "created_at": "2026-02-02T12:54:54.235373",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 688 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 688.6141919430556
+      },
+      "created_at": "2026-02-02T13:05:18.388828",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 688 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 688.7875882505556
+      },
+      "created_at": "2026-02-02T13:15:42.615536",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 688 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 688.9610075327778
+      },
+      "created_at": "2026-02-02T13:26:06.924953",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 689 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 689.1887574072223
+      },
+      "created_at": "2026-02-02T13:39:46.824498",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 689 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 689.3621545441667
+      },
+      "created_at": "2026-02-02T13:50:11.054191",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 689 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 689.5579073111112
+      },
+      "created_at": "2026-02-02T14:01:55.764154",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 689 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 689.7318044377778
+      },
+      "created_at": "2026-02-02T14:12:21.793811",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 689 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 689.9321297094444
+      },
+      "created_at": "2026-02-02T14:24:22.964788",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 690 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 690.1055058919444
+      },
+      "created_at": "2026-02-02T14:34:47.119036",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 690 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 690.2786099619444
+      },
+      "created_at": "2026-02-02T14:45:10.293695",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 690 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 690.4519839924999
+      },
+      "created_at": "2026-02-02T14:55:34.440208",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 690 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 690.6253610883334
+      },
+      "created_at": "2026-02-02T15:05:58.597748",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 690 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 690.7987365138889
+      },
+      "created_at": "2026-02-02T15:16:22.749284",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 690 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 690.9721133569444
+      },
+      "created_at": "2026-02-02T15:26:46.905909",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 691 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 691.1454897027778
+      },
+      "created_at": "2026-02-02T15:37:11.060760",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 691 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 691.3188640222222
+      },
+      "created_at": "2026-02-02T15:47:35.208309",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 691 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 691.4922439547222
+      },
+      "created_at": "2026-02-02T15:57:59.376067",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 691 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 691.6656200041667
+      },
+      "created_at": "2026-02-02T16:08:23.529838",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 691 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 691.8389940513889
+      },
+      "created_at": "2026-02-02T16:18:47.676416",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 692 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 692.0123794450001
+      },
+      "created_at": "2026-02-02T16:29:11.863835",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 692 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 692.1857517327778
+      },
+      "created_at": "2026-02-02T16:39:36.004078",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 692 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 692.3591250905555
+      },
+      "created_at": "2026-02-02T16:50:00.148160",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 692 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 692.5325092105555
+      },
+      "created_at": "2026-02-02T17:00:24.330983",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 692 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 692.7058844330555
+      },
+      "created_at": "2026-02-02T17:10:48.481789",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 692 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 692.8792581597223
+      },
+      "created_at": "2026-02-02T17:21:12.627204",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 693 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 693.0526462525
+      },
+      "created_at": "2026-02-02T17:31:36.824335",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 693 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 693.2260224722222
+      },
+      "created_at": "2026-02-02T17:42:00.978724",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 693 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 693.3993966777778
+      },
+      "created_at": "2026-02-02T17:52:25.125871",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 693 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 693.5727877388889
+      },
+      "created_at": "2026-02-02T18:02:49.333690",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 693 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 693.7491632361111
+      },
+      "created_at": "2026-02-02T18:13:24.285484",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 694 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 694.2420935730556
+      },
+      "created_at": "2026-02-02T18:42:58.834699",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 694 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 694.4174407175
+      },
+      "created_at": "2026-02-02T18:53:30.084424",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 694 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 694.5908672952777
+      },
+      "created_at": "2026-02-02T19:03:54.420088",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 694 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 694.7642975972221
+      },
+      "created_at": "2026-02-02T19:14:18.769180",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 694 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 694.9377307144443
+      },
+      "created_at": "2026-02-02T19:24:43.128398",
+      "acknowledged": false
+    },
+    {
+      "alert_type": "silence",
+      "severity": "notice",
+      "message": "No new crystals for 695 hours. Are you okay? Sometimes silence is integration. Sometimes it's avoidance.",
+      "trigger_data": {
+        "hours_silent": 695.1111549547222
+      },
+      "created_at": "2026-02-02T19:35:07.455673",
+      "acknowledged": false
+    }
+  ],
+  "last_wound_counts": {},
+  "last_emotion_counts": {},
+  "last_crystal_count": 0
+}

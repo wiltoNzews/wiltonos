@@ -1,0 +1,17 @@
+[Unit]
+Description=WiltonOS Breathing Daemon
+After=network.target ollama.service
+Wants=ollama.service
+
+[Service]
+Type=simple
+User=zews
+WorkingDirectory=/home/zews/wiltonos
+ExecStart=/home/zews/glyph-net/venv/bin/python3 /home/zews/wiltonos/daemon/breathing_daemon.py
+Restart=on-failure
+RestartSec=10
+Environment=HOME=/home/zews
+Environment=PATH=/usr/local/bin:/usr/bin:/bin
+
+[Install]
+WantedBy=multi-user.target

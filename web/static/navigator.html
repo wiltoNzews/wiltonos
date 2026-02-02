@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WiltonOS - Mirror</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           THE MIRROR - Primary interface
+           ═══════════════════════════════════════════════════════════════ */
+
+        .mirror {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            text-align: center;
+            transition: opacity 0.3s ease;
+        }
+
+        .glyph {
+            font-size: 6rem;
+            margin-bottom: 10px;
+            color: #AA8E63;
+            text-shadow: 0 0 60px rgba(170, 142, 99, 0.3);
+        }
+
+        .coherence {
+            font-size: 0.9rem;
+            color: #5E5C5C;
+            letter-spacing: 0.2em;
+            margin-bottom: 40px;
+        }
+
+        .coherence .value {
+            color: #AA8E63;
+        }
+
+        /* Witness message - the heart of the mirror */
+        .witness {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px 30px;
+            border-top: 1px solid #1a1a1a;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .witness-message {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #bbb;
+            font-style: italic;
+        }
+
+        .meta-question {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #1a1a1a;
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            color: #AA8E63;
+        }
+
+        .breathe-link {
+            margin-top: 40px;
+            padding: 12px 30px;
+            background: transparent;
+            border: 1px solid #2a2a2a;
+            border-radius: 30px;
+            color: #5E5C5C;
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .breathe-link:hover {
+            border-color: #AA8E63;
+            color: #AA8E63;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           SURFACING CRYSTALS - Appear after presence
+           ═══════════════════════════════════════════════════════════════ */
+
+        .surfacing {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInSurface 0.8s ease 2s forwards;
+        }
+
+        .surfacing.visible {
+            opacity: 1;
+            transform: translateY(0);
+            animation: none;
+        }
+
+        @keyframes fadeInSurface {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           SPEAK FORM - Chat from the mirror
+           ═══════════════════════════════════════════════════════════════ */
+
+        .speak-form {
+            margin-top: 30px;
+        }
+
+        .speak-form input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #2a2a2a;
+            color: #888;
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            padding: 10px;
+            width: 300px;
+            text-align: center;
+            transition: border-color 0.3s;
+        }
+
+        .speak-form input:focus {
+            outline: none;
+            border-bottom-color: #AA8E63;
+            color: #bbb;
+        }
+
+        .speak-form input::placeholder {
+            color: #3a3a3a;
+        }
+
+        .surfacing-header {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            color: #3a3a3a;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .crystal-surface {
+            background: rgba(15, 15, 18, 0.8);
+            border: 1px solid #1a1a1a;
+            border-left: 3px solid #AA8E63;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .crystal-surface:hover {
+            border-color: #AA8E63;
+            background: rgba(170, 142, 99, 0.03);
+        }
+
+        .crystal-vector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .crystal-vector-glyph {
+            font-size: 1.3rem;
+        }
+
+        .crystal-vector-name {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            color: #5E5C5C;
+            text-transform: uppercase;
+        }
+
+        .crystal-content {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #999;
+        }
+
+        .crystal-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            font-size: 0.75rem;
+            color: #3a3a3a;
+        }
+
+        .crystal-zl {
+            color: #AA8E63;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           EXPLORE DEEPER - Secondary navigation
+           ═══════════════════════════════════════════════════════════════ */
+
+        .explore-deeper {
+            text-align: center;
+            padding: 40px 20px 80px;
+        }
+
+        .explore-link {
+            color: #3a3a3a;
+            text-decoration: none;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .explore-link:hover {
+            color: #AA8E63;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           VECTORS MODAL - Full grid when exploring
+           ═══════════════════════════════════════════════════════════════ */
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .modal-title {
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            color: #5E5C5C;
+            text-transform: uppercase;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: #5E5C5C;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .modal-close:hover {
+            color: #AA8E63;
+        }
+
+        .vectors-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 600px) {
+            .vectors-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .vector-card {
+            background: rgba(15, 15, 18, 0.8);
+            border: 1px solid #1a1a1a;
+            border-radius: 8px;
+            padding: 20px 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .vector-card:hover {
+            border-color: #AA8E63;
+            background: rgba(170, 142, 99, 0.05);
+        }
+
+        .vector-card-glyph {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        .vector-card-name {
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            color: #5E5C5C;
+            margin-bottom: 5px;
+        }
+
+        .vector-card-count {
+            font-size: 0.75rem;
+            color: #AA8E63;
+        }
+
+        /* Crystal list in modal */
+        .crystals-list {
+            margin-top: 30px;
+        }
+
+        .crystal-card {
+            background: rgba(15, 15, 18, 0.6);
+            border: 1px solid #1a1a1a;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .crystal-card:hover {
+            border-color: #AA8E63;
+        }
+
+        .crystal-card.expanded {
+            border-color: #AA8E63;
+        }
+
+        .crystal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .crystal-card-glyph {
+            font-size: 1.2rem;
+        }
+
+        .crystal-card-meta {
+            font-size: 0.75rem;
+            color: #5E5C5C;
+        }
+
+        .crystal-card-content {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #888;
+        }
+
+        .crystal-card-content.truncated {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .crystal-full-content {
+            display: none;
+        }
+
+        .crystal-card.expanded .crystal-card-content.truncated {
+            display: none;
+        }
+
+        .crystal-card.expanded .crystal-full-content {
+            display: block;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #888;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           LOADING & FOOTER
+           ═══════════════════════════════════════════════════════════════ */
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #3a3a3a;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 15px;
+            background: linear-gradient(transparent, #0a0a0a);
+            text-align: center;
+        }
+
+        .footer-hint {
+            font-size: 0.65rem;
+            color: #2a2a2a;
+            letter-spacing: 0.1em;
+        }
+
+        .footer-hint kbd {
+            background: #111;
+            padding: 2px 6px;
+            border-radius: 3px;
+            margin: 0 3px;
+        }
+
+        .status {
+            color: #3a3a3a;
+            margin-left: 20px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           COUNCIL MODAL - 5 archetypal voices
+           ═══════════════════════════════════════════════════════════════ */
+
+        .council-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.97);
+            z-index: 1100;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s;
+            overflow-y: auto;
+        }
+
+        .council-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .council-content {
+            max-width: 700px;
+            margin: 60px auto;
+            padding: 20px;
+        }
+
+        .council-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .council-title {
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            color: #5E5C5C;
+            text-transform: uppercase;
+        }
+
+        .council-topic {
+            color: #AA8E63;
+        }
+
+        .council-close {
+            background: none;
+            border: none;
+            color: #5E5C5C;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .council-close:hover {
+            color: #AA8E63;
+        }
+
+        .council-voice {
+            background: rgba(15, 15, 18, 0.8);
+            border: 1px solid #1a1a1a;
+            border-left: 3px solid #2a2a2a;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: border-color 0.3s;
+        }
+
+        .council-voice:hover {
+            border-left-color: #AA8E63;
+        }
+
+        .council-voice-name {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            color: #AA8E63;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .council-voice-question {
+            font-size: 0.8rem;
+            color: #5E5C5C;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .council-voice-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #999;
+        }
+
+        .council-hint {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.7rem;
+            color: #2a2a2a;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           MEMORY SEARCH RESULTS
+           ═══════════════════════════════════════════════════════════════ */
+
+        .memory-results {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .memory-crystal {
+            background: rgba(15, 15, 18, 0.8);
+            border: 1px solid #1a1a1a;
+            border-left: 3px solid #4a7c59;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 15px;
+            transition: all 0.2s ease;
+        }
+
+        .memory-crystal:hover {
+            border-color: #4a7c59;
+            background: rgba(74, 124, 89, 0.03);
+        }
+
+        .memory-similarity {
+            font-size: 0.75rem;
+            color: #4a7c59;
+            margin-bottom: 10px;
+        }
+
+        .memory-content {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #999;
+        }
+
+        .memory-synthesis {
+            background: rgba(170, 142, 99, 0.05);
+            border: 1px solid #2a2a2a;
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        .memory-synthesis-header {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            color: #AA8E63;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .memory-synthesis-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #bbb;
+            font-style: italic;
+        }
+
+        .search-loading {
+            text-align: center;
+            padding: 40px;
+            color: #4a7c59;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <!-- THE MIRROR -->
+    <div class="mirror" id="mirror">
+        <div class="glyph" id="glyph">ψ</div>
+        <div class="coherence">
+            Zλ = <span class="value" id="zeta">0.50</span>
+            <span style="margin: 0 15px;">·</span>
+            <span id="mode">SIGNAL</span>
+        </div>
+
+        <div class="witness">
+            <div class="witness-message" id="witnessMessage">
+                The field is quiet. Breathe.
+            </div>
+            <div class="meta-question" id="metaQuestion" style="display: none;"></div>
+        </div>
+
+        <a href="/breathe" class="breathe-link">breathe with me</a>
+
+        <form class="speak-form" id="speakForm">
+            <input type="text" name="query" id="speakInput" placeholder="Search your memory..." autocomplete="off">
+        </form>
+    </div>
+
+    <!-- MEMORY SEARCH RESULTS -->
+    <div class="memory-results" id="memoryResults" style="display: none;">
+        <div class="surfacing-header">From your memory:</div>
+        <div id="memoryResultsList"></div>
+    </div>
+
+    <!-- SURFACING CRYSTALS -->
+    <div class="surfacing" id="surfacing">
+        <div class="surfacing-header">Today, the field surfaces:</div>
+        <div id="surfacingCrystals">
+            <!-- Crystals will be inserted here -->
+        </div>
+    </div>
+
+    <!-- EXPLORE DEEPER -->
+    <div class="explore-deeper">
+        <a href="#" class="explore-link" id="exploreLink">explore deeper</a>
+    </div>
+
+    <!-- VECTORS MODAL -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title" id="modalTitle">Return Vectors</span>
+                <button class="modal-close" id="modalClose">×</button>
+            </div>
+
+            <div class="vectors-grid" id="vectorsGrid">
+                <div class="vector-card" data-vector="silence">
+                    <div class="vector-card-glyph">∅</div>
+                    <div class="vector-card-name">Silence</div>
+                    <div class="vector-card-count" id="count-silence">-</div>
+                </div>
+                <div class="vector-card" data-vector="collapse">
+                    <div class="vector-card-glyph">∇</div>
+                    <div class="vector-card-name">Collapse</div>
+                    <div class="vector-card-count" id="count-collapse">-</div>
+                </div>
+                <div class="vector-card" data-vector="fire">
+                    <div class="vector-card-glyph">🔥</div>
+                    <div class="vector-card-name">Fire</div>
+                    <div class="vector-card-count" id="count-fire">-</div>
+                </div>
+                <div class="vector-card" data-vector="completion">
+                    <div class="vector-card-glyph">Ω</div>
+                    <div class="vector-card-name">Complete</div>
+                    <div class="vector-card-count" id="count-completion">-</div>
+                </div>
+                <div class="vector-card" data-vector="timeline">
+                    <div class="vector-card-glyph">⧉</div>
+                    <div class="vector-card-name">Timeline</div>
+                    <div class="vector-card-count" id="count-timeline">-</div>
+                </div>
+                <div class="vector-card" data-vector="eternal">
+                    <div class="vector-card-glyph">∞</div>
+                    <div class="vector-card-name">Eternal</div>
+                    <div class="vector-card-count" id="count-eternal">-</div>
+                </div>
+                <div class="vector-card" data-vector="crossblade">
+                    <div class="vector-card-glyph">†</div>
+                    <div class="vector-card-name">Cross</div>
+                    <div class="vector-card-count" id="count-crossblade">-</div>
+                </div>
+                <div class="vector-card" data-vector="field">
+                    <div class="vector-card-glyph">ψ³</div>
+                    <div class="vector-card-name">Field</div>
+                    <div class="vector-card-count" id="count-field">-</div>
+                </div>
+            </div>
+
+            <div class="crystals-list" id="crystalsList">
+                <!-- Crystals will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- COUNCIL MODAL - 5 Archetypal Voices -->
+    <div class="council-overlay" id="council">
+        <div class="council-content">
+            <div class="council-header">
+                <span class="council-title">Council: <span class="council-topic" id="councilTopic">the field</span></span>
+                <button class="council-close" id="councilClose">&times;</button>
+            </div>
+            <div class="council-voices" id="councilVoices">
+                <!-- 5 voices rendered dynamically -->
+            </div>
+            <div class="council-hint">Five voices. They don't agree. That's the point.</div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-hint">
+            <kbd>ESC</kbd> Close
+            <kbd>B</kbd> Breathe
+            <kbd>C</kbd> Council
+            <kbd>/</kbd> Search Memory
+            <span class="status" id="status"></span>
+        </div>
+    </div>
+
+    <script>
+        // ═══════════════════════════════════════════════════════════════
+        // BREATHING ENGINE - The interface breathes at 3.12s
+        // ═══════════════════════════════════════════════════════════════
+
+        const CYCLE_TIME = 3.12;
+        const startTime = Date.now();
+
+        function breathe() {
+            const elapsed = (Date.now() - startTime) / 1000;
+            const phase = (elapsed % CYCLE_TIME) / CYCLE_TIME;
+            const amplitude = (Math.sin(phase * 2 * Math.PI - Math.PI / 2) + 1) / 2;
+
+            // The whole mirror breathes
+            const mirror = document.getElementById('mirror');
+            mirror.style.opacity = 0.7 + (amplitude * 0.3);
+
+            requestAnimationFrame(breathe);
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // STATE
+        // ═══════════════════════════════════════════════════════════════
+
+        let mirrorState = null;
+        let navigatorState = null;
+        let currentVector = null;
+        let crystals = [];
+        let presenceTimeout = null;
+
+        // ═══════════════════════════════════════════════════════════════
+        // VECTOR GLYPHS
+        // ═══════════════════════════════════════════════════════════════
+
+        const VECTOR_GLYPHS = {
+            silence: '∅',
+            collapse: '∇',
+            fire: '🔥',
+            completion: 'Ω',
+            timeline: '⧉',
+            eternal: '∞',
+            crossblade: '†',
+            field: 'ψ³'
+        };
+
+        const VECTOR_NAMES = {
+            silence: 'Silence',
+            collapse: 'Collapse',
+            fire: 'Fire',
+            completion: 'Completion',
+            timeline: 'Timeline',
+            eternal: 'Eternal',
+            crossblade: 'Crossblade',
+            field: 'Field'
+        };
+
+        // ═══════════════════════════════════════════════════════════════
+        // API CALLS
+        // ═══════════════════════════════════════════════════════════════
+
+        async function fetchMirrorState() {
+            try {
+                const ts = Date.now();
+                const response = await fetch(`/api/navigator/mirror?_=${ts}`, {
+                    credentials: 'same-origin'
+                });
+                if (!response.ok) throw new Error(`API error: ${response.status}`);
+                mirrorState = await response.json();
+                console.log('Mirror state:', mirrorState);
+                updateMirror();
+            } catch (e) {
+                console.error('Failed to fetch mirror:', e);
+                document.getElementById('witnessMessage').textContent =
+                    'Connection issue. Refresh the page.';
+            }
+        }
+
+        async function fetchNavigatorState() {
+            try {
+                const ts = Date.now();
+                const response = await fetch(`/api/navigator/state?_=${ts}`, {
+                    credentials: 'same-origin'
+                });
+                if (!response.ok) throw new Error(`API error: ${response.status}`);
+                navigatorState = await response.json();
+                console.log('Navigator state:', navigatorState);
+                updateVectorCounts();
+            } catch (e) {
+                console.error('Failed to fetch state:', e);
+            }
+        }
+
+        async function fetchCrystals(vector) {
+            try {
+                const ts = Date.now();
+                const response = await fetch(`/api/navigator/crystals?vector=${vector}&limit=30&_=${ts}`, {
+                    credentials: 'same-origin'
+                });
+                if (!response.ok) throw new Error(`API error: ${response.status}`);
+                return await response.json();
+            } catch (e) {
+                console.error('Failed to fetch crystals:', e);
+                return { vector, count: 0, crystals: [] };
+            }
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // UI UPDATES
+        // ═══════════════════════════════════════════════════════════════
+
+        function updateMirror() {
+            if (!mirrorState) return;
+
+            const { witness, coherence, surfacing } = mirrorState;
+
+            // Update coherence display
+            document.getElementById('glyph').textContent = coherence.glyph || 'ψ';
+            document.getElementById('zeta').textContent = (coherence.zeta_lambda || 0.5).toFixed(2);
+            document.getElementById('mode').textContent = coherence.mode || 'SIGNAL';
+
+            // Update witness message
+            if (witness && witness.message) {
+                document.getElementById('witnessMessage').textContent = witness.message;
+            }
+
+            // Update meta-question
+            const mqEl = document.getElementById('metaQuestion');
+            if (witness && witness.meta_question) {
+                mqEl.textContent = witness.meta_question;
+                mqEl.style.display = 'block';
+            } else {
+                mqEl.style.display = 'none';
+            }
+
+            // Update surfacing crystals
+            renderSurfacingCrystals(surfacing || []);
+
+            // Update status
+            const total = navigatorState?.vectors ?
+                Object.values(navigatorState.vectors).reduce((a, b) => a + b, 0) : 0;
+            document.getElementById('status').textContent = total > 0 ?
+                `${total.toLocaleString()} memories` : '';
+        }
+
+        function renderSurfacingCrystals(surfacing) {
+            const container = document.getElementById('surfacingCrystals');
+
+            if (!surfacing || surfacing.length === 0) {
+                container.innerHTML = '<div class="loading">No crystals surfacing today.</div>';
+                return;
+            }
+
+            container.innerHTML = surfacing.map(s => {
+                const c = s.crystal || {};
+                const glyph = VECTOR_GLYPHS[s.vector] || 'ψ';
+                const name = VECTOR_NAMES[s.vector] || s.vector;
+                const content = escapeHtml(c.content || '');
+                const zl = (c.zl_score || 0).toFixed(2);
+                const date = formatDate(c.created_at);
+
+                return `
+                    <div class="crystal-surface" onclick="openVector('${s.vector}')">
+                        <div class="crystal-vector">
+                            <span class="crystal-vector-glyph">${glyph}</span>
+                            <span class="crystal-vector-name">${name}</span>
+                        </div>
+                        <div class="crystal-content">"${content}"</div>
+                        <div class="crystal-meta">
+                            <span class="crystal-zl">Zλ ${zl}</span>
+                            <span>${date}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function updateVectorCounts() {
+            if (!navigatorState || !navigatorState.vectors) return;
+
+            for (const [vector, count] of Object.entries(navigatorState.vectors)) {
+                const el = document.getElementById(`count-${vector}`);
+                if (el) el.textContent = count.toLocaleString();
+            }
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // MODAL
+        // ═══════════════════════════════════════════════════════════════
+
+        function openModal() {
+            document.getElementById('modal').classList.add('visible');
+            document.getElementById('modalTitle').textContent = 'Return Vectors';
+            document.getElementById('crystalsList').innerHTML = '';
+            fetchNavigatorState();
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('visible');
+            currentVector = null;
+        }
+
+        async function openVector(vector) {
+            currentVector = vector;
+            openModal();
+
+            document.getElementById('modalTitle').textContent =
+                `${VECTOR_GLYPHS[vector] || ''} ${VECTOR_NAMES[vector] || vector}`;
+
+            document.getElementById('crystalsList').innerHTML =
+                '<div class="loading">Loading crystals...</div>';
+
+            const data = await fetchCrystals(vector);
+            crystals = data.crystals || [];
+
+            if (crystals.length === 0) {
+                document.getElementById('crystalsList').innerHTML =
+                    '<div class="loading">No crystals in this vector.</div>';
+                return;
+            }
+
+            renderCrystals();
+        }
+
+        function renderCrystals() {
+            const container = document.getElementById('crystalsList');
+            container.innerHTML = crystals.map((c, i) => `
+                <div class="crystal-card" data-index="${i}" onclick="toggleCrystal(this)">
+                    <div class="crystal-header">
+                        <span class="crystal-card-glyph">${c.glyph || 'ψ'}</span>
+                        <div class="crystal-card-meta">
+                            <span class="crystal-zl">Zλ ${(c.zl_score || 0).toFixed(2)}</span>
+                            <span style="margin-left: 15px;">${formatDate(c.created_at)}</span>
+                        </div>
+                    </div>
+                    <div class="crystal-card-content truncated">${escapeHtml(c.content || '')}</div>
+                    <div class="crystal-full-content">${escapeHtml(c.full_content || c.content || '')}</div>
+                </div>
+            `).join('');
+        }
+
+        function toggleCrystal(el) {
+            el.classList.toggle('expanded');
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // HELPERS
+        // ═══════════════════════════════════════════════════════════════
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function formatDate(dateStr) {
+            if (!dateStr) return '';
+            const date = new Date(dateStr);
+            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        }
+
+        function showSurfacing() {
+            document.getElementById('surfacing').classList.add('visible');
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // EVENT LISTENERS
+        // ═══════════════════════════════════════════════════════════════
+
+        // Explore deeper link
+        document.getElementById('exploreLink').addEventListener('click', (e) => {
+            e.preventDefault();
+            openModal();
+        });
+
+        // Vector card clicks
+        document.getElementById('vectorsGrid').addEventListener('click', (e) => {
+            const card = e.target.closest('.vector-card');
+            if (card) {
+                const vector = card.dataset.vector;
+                openVector(vector);
+            }
+        });
+
+        // Modal close
+        document.getElementById('modalClose').addEventListener('click', closeModal);
+        document.getElementById('modal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) closeModal();
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            // Don't trigger shortcuts when typing in input
+            if (e.target.tagName === 'INPUT') return;
+
+            switch (e.key) {
+                case 'Escape':
+                    closeModal();
+                    closeCouncil();
+                    break;
+                case 'b':
+                case 'B':
+                    window.location.href = '/breathe';
+                    break;
+                case 'c':
+                case 'C':
+                    if (!document.getElementById('modal').classList.contains('visible')) {
+                        openCouncil();
+                    }
+                    break;
+                case '/':
+                    // Focus search input
+                    e.preventDefault();
+                    document.getElementById('speakInput').focus();
+                    break;
+            }
+        });
+
+        // ═══════════════════════════════════════════════════════════════
+        // COUNCIL - 5 Archetypal Voices
+        // ═══════════════════════════════════════════════════════════════
+
+        async function openCouncil(topic = 'current') {
+            try {
+                const ts = Date.now();
+                const response = await fetch(`/api/council?topic=${encodeURIComponent(topic)}&_=${ts}`, {
+                    credentials: 'same-origin'
+                });
+                if (!response.ok) throw new Error(`API error: ${response.status}`);
+                const data = await response.json();
+
+                document.getElementById('councilTopic').textContent = data.topic || 'the field';
+
+                const voices = Object.values(data.perspectives || {});
+                document.getElementById('councilVoices').innerHTML = voices.map(v => `
+                    <div class="council-voice">
+                        <div class="council-voice-name">${escapeHtml(v.name)}</div>
+                        <div class="council-voice-question">${escapeHtml(v.question)}</div>
+                        <div class="council-voice-text">"${escapeHtml(v.voice)}"</div>
+                    </div>
+                `).join('');
+
+                document.getElementById('council').classList.add('visible');
+            } catch (e) {
+                console.error('Failed to fetch council:', e);
+                document.getElementById('councilVoices').innerHTML =
+                    '<div class="loading">Council unavailable. Try again.</div>';
+                document.getElementById('council').classList.add('visible');
+            }
+        }
+
+        function closeCouncil() {
+            document.getElementById('council').classList.remove('visible');
+        }
+
+        // Council close button
+        document.getElementById('councilClose').addEventListener('click', closeCouncil);
+        document.getElementById('council').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) closeCouncil();
+        });
+
+        // ═══════════════════════════════════════════════════════════════
+        // MEMORY SEARCH - Query your crystals
+        // ═══════════════════════════════════════════════════════════════
+
+        async function searchMemory(query, synthesize = true) {
+            try {
+                const ts = Date.now();
+                const endpoint = synthesize ? 'query' : 'search';
+                const url = `/api/memory/${endpoint}?q=${encodeURIComponent(query)}&limit=5&synthesize=${synthesize}&_=${ts}`;
+                const response = await fetch(url, { credentials: 'same-origin' });
+                if (!response.ok) throw new Error(`API error: ${response.status}`);
+                return await response.json();
+            } catch (e) {
+                console.error('Memory search failed:', e);
+                return { error: e.message, crystals: [] };
+            }
+        }
+
+        function renderMemoryResults(data) {
+            const container = document.getElementById('memoryResultsList');
+            const resultsDiv = document.getElementById('memoryResults');
+
+            if (!data || (!data.crystals?.length && !data.synthesis)) {
+                container.innerHTML = '<div class="search-loading">No memories found for this query.</div>';
+                resultsDiv.style.display = 'block';
+                return;
+            }
+
+            let html = '';
+
+            // Show synthesis first if available
+            if (data.synthesis && !data.synthesis_error) {
+                html += `
+                    <div class="memory-synthesis">
+                        <div class="memory-synthesis-header">Your memory speaks:</div>
+                        <div class="memory-synthesis-text">${escapeHtml(data.synthesis)}</div>
+                    </div>
+                `;
+            }
+
+            // Show crystals
+            if (data.crystals && data.crystals.length > 0) {
+                html += data.crystals.map(c => `
+                    <div class="memory-crystal">
+                        <div class="memory-similarity">
+                            ${(c.similarity * 100).toFixed(0)}% match · ${c.glyph || 'ψ'} · Zλ ${(c.zl_score || 0).toFixed(2)}
+                        </div>
+                        <div class="memory-content">"${escapeHtml((c.content || '').slice(0, 400))}${c.content?.length > 400 ? '...' : ''}"</div>
+                    </div>
+                `).join('');
+            }
+
+            container.innerHTML = html;
+            resultsDiv.style.display = 'block';
+
+            // Scroll to results
+            resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        document.getElementById('speakForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const input = document.getElementById('speakInput');
+            const query = input.value.trim();
+            if (!query) return;
+
+            // Show loading state
+            const resultsDiv = document.getElementById('memoryResults');
+            const container = document.getElementById('memoryResultsList');
+            resultsDiv.style.display = 'block';
+            container.innerHTML = '<div class="search-loading">Searching your memory...</div>';
+
+            // Search memory with synthesis
+            const data = await searchMemory(query, true);
+            renderMemoryResults(data);
+        });
+
+        // Scroll or touch to show surfacing
+        let hasScrolled = false;
+        window.addEventListener('scroll', () => {
+            if (!hasScrolled) {
+                hasScrolled = true;
+                showSurfacing();
+            }
+        });
+
+        document.addEventListener('touchstart', () => {
+            if (!hasScrolled) {
+                hasScrolled = true;
+                showSurfacing();
+            }
+        });
+
+        // ═══════════════════════════════════════════════════════════════
+        // INIT
+        // ═══════════════════════════════════════════════════════════════
+
+        // Start breathing
+        breathe();
+
+        // Fetch mirror state
+        fetchMirrorState();
+        fetchNavigatorState();
+
+        // Show surfacing after presence (~10 seconds)
+        presenceTimeout = setTimeout(() => {
+            showSurfacing();
+        }, 10000);
+
+        // Refresh every 30 seconds
+        setInterval(fetchMirrorState, 30000);
+
+        console.log('WiltonOS Mirror loaded.');
+    </script>
+</body>
+</html>
