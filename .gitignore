@@ -41,3 +41,10 @@ Thumbs.db
 # Witness output (generated, large)
 data/witness_output/
 compendium/full_analysis.json
+
+# Personal content (gardener's journal, not the garden)
+compendium/
+deep_analysis/
+deep_sequential/
+expanded/
+analysis/MEMORY_SPINE_PRIVATE.md
