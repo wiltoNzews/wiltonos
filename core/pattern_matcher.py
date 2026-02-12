@@ -425,8 +425,8 @@ class PatternMatcher:
             # Intellectual depth: Chaos and Bridge
             result.council_voices = ["chaos", "bridge"]
         else:
-            # Default: Witness and Gardener
-            result.council_voices = ["witness", "gardener"]
+            # Default: Witness and Sage
+            result.council_voices = ["witness", "sage"]
 
         # ── 7. Confidence ──────────────────────────────────────────
         if result.wounds:

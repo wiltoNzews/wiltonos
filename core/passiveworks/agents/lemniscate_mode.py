@@ -126,34 +126,21 @@ class Agent:
     
     def _process_lemniscate_cycle(self):
         """
-        Process a lemniscate cycle, looking for pattern transcendence
+        Process a lemniscate cycle — state transitions only.
+
+        Transcendence detection is handled by the bridge using real coherence
+        from the daemon. Dormant→active is triggered by real arc events
+        (via activate()), not random chance.
         """
-        # The cycle symbolizes the infinity loop of lemniscate mode
+        pass  # State transitions driven by bridge, not by dice roll
+
+    def activate(self, reason: str = ""):
+        """
+        Activate from dormant state. Called by daemon on real arc events.
+        """
         if self.lemniscate_state == "dormant":
-            logger.info("Lemniscate mode dormant, waiting for symbolic trigger...")
-            if random.random() < 0.1:  # 10% chance of spontaneous activation
-                self.lemniscate_state = "active"
-                logger.info("Lemniscate mode spontaneously activated")
-        
-        elif self.lemniscate_state == "active":
-            logger.info(f"Processing lemniscate cycle {self.cycle_count}...")
-            
-            # Check for transcendence condition
-            if self.coherence > 0.89 and random.random() < 0.21:
-                self.lemniscate_state = "transcendent"
-                logger.info("💫 Lemniscate mode achieved TRANSCENDENCE")
-                
-                # In a full implementation, this would generate a significant insight
-                # For this demo, we'll just log it
-                transcendent_insight = "Symbolic transformation complete: finite pattern collapsed into infinite potential."
-                logger.info(f"Transcendent insight: {transcendent_insight}")
-                self.last_insight = transcendent_insight
-        
-        elif self.lemniscate_state == "transcendent":
-            # Slowly return to active state
-            if random.random() < 0.3:
-                self.lemniscate_state = "active"
-                logger.info("Lemniscate mode returned to active state")
+            self.lemniscate_state = "active"
+            logger.info(f"Lemniscate: dormant → active ({reason})")
     
     def _update_coherence_lemniscate(self):
         """

@@ -157,6 +157,7 @@ def get_unanalyzed_crystals(db_path: Path, limit: int = None, force: bool = Fals
             SELECT id, content FROM crystals
             WHERE content IS NOT NULL AND content != ''
             AND (glyph_primary IS NULL OR glyph_primary = '')
+            ORDER BY id DESC
         """
 
     if limit:
@@ -291,6 +292,8 @@ def analyze_text(text: str) -> Optional[Dict]:
 
         # Extract JSON from response
         response_text = result.get("response", "")
+        # Strip <think>...</think> tags (qwen3, deepseek-r1 chain-of-thought)
+        response_text = re.sub(r'<think>[\s\S]*?</think>', '', response_text).strip()
         json_match = re.search(r'\{[\s\S]*\}', response_text)
         if json_match:
             json_str = strip_json_comments(json_match.group())

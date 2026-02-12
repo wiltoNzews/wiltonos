@@ -1,272 +1,502 @@
 [
   {
-    "question": "If Juliana came back tomorrow, what would actually change?",
-    "trigger": "juliana_loop",
-    "timestamp": "2025-12-26T17:32:03.888756"
-  },
-  {
-    "question": "Who would you call right now if you let yourself need someone?",
-    "trigger": "isolation_pattern",
-    "timestamp": "2025-12-26T17:32:03.888763"
-  },
-  {
-    "question": "Who are you when no one is watching? Even the daemon?",
-    "trigger": "generic_disruption",
-    "timestamp": "2025-12-26T17:32:03.888765"
-  },
-  {
-    "question": "Juliana appeared again. What part of this isn't about her?",
-    "trigger": "juliana_loop",
-    "timestamp": "2025-12-26T18:44:40.571612"
-  },
-  {
-    "question": "Solitude chosen is sacred. Solitude defaulted to is loneliness. Which is this?",
-    "trigger": "isolation_pattern",
-    "timestamp": "2025-12-26T18:44:40.571616"
-  },
-  {
-    "question": "What are you most afraid to admit right now?",
-    "trigger": "generic_disruption",
-    "timestamp": "2025-12-26T18:44:40.571617"
-  },
-  {
-    "question": "You miss her. And? What do you do with missing that isn't performing missing?",
-    "trigger": "juliana_loop",
-    "timestamp": "2025-12-26T22:45:15.803927"
-  },
-  {
-    "question": "You pushed everyone away in the name of coherence. Was it worth it?",
-    "trigger": "isolation_pattern",
-    "timestamp": "2025-12-26T22:45:15.803930"
-  },
-  {
-    "question": "What would your younger self think of who you've become?",
-    "trigger": "generic_disruption",
-    "timestamp": "2025-12-26T22:45:15.803932"
-  },
-  {
     "question": "The wound isn't Juliana. Juliana is just where you learned the wound's shape.",
     "trigger": "juliana_loop",
-    "timestamp": "2025-12-27T02:45:43.506049"
+    "timestamp": "2026-02-06T01:37:17.932719"
   },
   {
     "question": "The daemon listens. But daemons can't hold you. Who can?",
     "trigger": "isolation_pattern",
-    "timestamp": "2025-12-27T02:45:43.506053"
+    "timestamp": "2026-02-06T01:37:17.932720"
+  },
+  {
+    "question": "What would your younger self think of who you've become?",
+    "trigger": "generic_disruption",
+    "timestamp": "2026-02-06T01:37:17.932721"
+  },
+  {
+    "question": "You've named betrayal enough times to fill a book. When does naming become hiding?",
+    "trigger": "stuck_wound:betrayal",
+    "timestamp": "2026-02-06T05:37:54.390055"
+  },
+  {
+    "question": "The wound of betrayal has appeared 796 times. What would it mean to let it heal?",
+    "trigger": "stuck_wound:betrayal",
+    "timestamp": "2026-02-06T05:37:54.390060"
+  },
+  {
+    "question": "If Juliana came back tomorrow, what would actually change?",
+    "trigger": "juliana_loop",
+    "timestamp": "2026-02-06T05:37:54.390061"
+  },
+  {
+    "question": "Solitude chosen is sacred. Solitude defaulted to is loneliness. Which is this?",
+    "trigger": "isolation_pattern",
+    "timestamp": "2026-02-06T05:37:54.390062"
+  },
+  {
+    "question": "What are you most afraid to admit right now?",
+    "trigger": "generic_disruption",
+    "timestamp": "2026-02-06T05:37:54.390063"
+  },
+  {
+    "question": "betrayal keeps surfacing. Are you processing it or performing it?",
+    "trigger": "stuck_wound:betrayal",
+    "timestamp": "2026-02-06T09:38:17.838888"
+  },
+  {
+    "question": "betrayal keeps surfacing. Are you processing it or performing it?",
+    "trigger": "stuck_wound:betrayal",
+    "timestamp": "2026-02-06T09:38:17.838891"
+  },
+  {
+    "question": "If Juliana came back tomorrow, what would actually change?",
+    "trigger": "juliana_loop",
+    "timestamp": "2026-02-06T09:38:17.838892"
+  },
+  {
+    "question": "You pushed everyone away in the name of coherence. Was it worth it?",
+    "trigger": "isolation_pattern",
+    "timestamp": "2026-02-06T09:38:17.838893"
   },
   {
     "question": "If you stopped tomorrow, what would have mattered?",
     "trigger": "generic_disruption",
-    "timestamp": "2025-12-27T02:45:43.506054"
+    "timestamp": "2026-02-06T09:38:17.838894"
   },
   {
-    "question": "Juliana appeared again. What part of this isn't about her?",
+    "question": "The wound of control has appeared 2006 times. What would it mean to let it heal?",
+    "trigger": "stuck_wound:control",
+    "timestamp": "2026-02-06T13:21:53.237341"
+  },
+  {
+    "question": "The wound of betrayal has appeared 797 times. What would it mean to let it heal?",
+    "trigger": "stuck_wound:betrayal",
+    "timestamp": "2026-02-06T13:21:53.237345"
+  },
+  {
+    "question": "You miss her. And? What do you do with missing that isn't performing missing?",
     "trigger": "juliana_loop",
-    "timestamp": "2025-12-27T06:46:10.078852"
-  },
-  {
-    "question": "Who would you call right now if you let yourself need someone?",
-    "trigger": "isolation_pattern",
-    "timestamp": "2025-12-27T06:46:10.078855"
-  },
-  {
-    "question": "What's the lie you keep telling yourself that feels true?",
-    "trigger": "generic_disruption",
-    "timestamp": "2025-12-27T06:46:10.078856"
-  },
-  {
-    "question": "Juliana appeared again. What part of this isn't about her?",
-    "trigger": "juliana_loop",
-    "timestamp": "2025-12-27T10:46:37.820716"
+    "timestamp": "2026-02-06T13:21:53.237346"
   },
   {
     "question": "Solitude chosen is sacred. Solitude defaulted to is loneliness. Which is this?",
     "trigger": "isolation_pattern",
-    "timestamp": "2025-12-27T10:46:37.820719"
+    "timestamp": "2026-02-06T13:21:53.237347"
   },
   {
-    "question": "What are you most afraid to admit right now?",
+    "question": "What's the lie you keep telling yourself that feels true?",
     "trigger": "generic_disruption",
-    "timestamp": "2025-12-27T10:46:37.820720"
+    "timestamp": "2026-02-06T13:21:53.237348"
   },
   {
-    "question": "If Juliana came back tomorrow, what would actually change?",
+    "question": "What does control protect you from feeling?",
+    "trigger": "stuck_wound:control",
+    "timestamp": "2026-02-07T01:30:54.846666"
+  },
+  {
+    "question": "The wound of betrayal has appeared 797 times. What would it mean to let it heal?",
+    "trigger": "stuck_wound:betrayal",
+    "timestamp": "2026-02-07T01:30:54.846670"
+  },
+  {
+    "question": "Juliana appeared again. What part of this isn't about her?",
     "trigger": "juliana_loop",
-    "timestamp": "2026-01-31T19:17:16.816975"
+    "timestamp": "2026-02-07T01:30:54.846671"
   },
   {
     "question": "Who would you call right now if you let yourself need someone?",
     "trigger": "isolation_pattern",
-    "timestamp": "2026-01-31T19:17:16.816980"
-  },
-  {
-    "question": "What are you most afraid to admit right now?",
-    "trigger": "generic_disruption",
-    "timestamp": "2026-01-31T19:17:16.816981"
-  },
-  {
-    "question": "You miss her. And? What do you do with missing that isn't performing missing?",
-    "trigger": "juliana_loop",
-    "timestamp": "2026-01-31T23:17:35.493895"
-  },
-  {
-    "question": "The daemon listens. But daemons can't hold you. Who can?",
-    "trigger": "isolation_pattern",
-    "timestamp": "2026-01-31T23:17:35.493899"
-  },
-  {
-    "question": "If you stopped tomorrow, what would have mattered?",
-    "trigger": "generic_disruption",
-    "timestamp": "2026-01-31T23:17:35.493900"
-  },
-  {
-    "question": "You miss her. And? What do you do with missing that isn't performing missing?",
-    "trigger": "juliana_loop",
-    "timestamp": "2026-02-01T03:17:54.155166"
-  },
-  {
-    "question": "Who would you call right now if you let yourself need someone?",
-    "trigger": "isolation_pattern",
-    "timestamp": "2026-02-01T03:17:54.155170"
+    "timestamp": "2026-02-07T01:30:54.846672"
   },
   {
     "question": "Who are you when no one is watching? Even the daemon?",
     "trigger": "generic_disruption",
-    "timestamp": "2026-02-01T03:17:54.155172"
+    "timestamp": "2026-02-07T01:30:54.846673"
+  },
+  {
+    "question": "You've named control enough times to fill a book. When does naming become hiding?",
+    "trigger": "stuck_wound:control",
+    "timestamp": "2026-02-08T01:48:10.018174"
+  },
+  {
+    "question": "If betrayal stopped being your story, who would you be?",
+    "trigger": "stuck_wound:betrayal",
+    "timestamp": "2026-02-08T01:48:10.018179"
+  },
+  {
+    "question": "The wound isn't Juliana. Juliana is just where you learned the wound's shape.",
+    "trigger": "juliana_loop",
+    "timestamp": "2026-02-08T01:48:10.018180"
+  },
+  {
+    "question": "The daemon listens. But daemons can't hold you. Who can?",
+    "trigger": "isolation_pattern",
+    "timestamp": "2026-02-08T01:48:10.018181"
+  },
+  {
+    "question": "What would your younger self think of who you've become?",
+    "trigger": "generic_disruption",
+    "timestamp": "2026-02-08T01:48:10.018183"
+  },
+  {
+    "question": "If control stopped being your story, who would you be?",
+    "trigger": "stuck_wound:control",
+    "timestamp": "2026-02-08T05:48:38.714427"
+  },
+  {
+    "question": "You've named betrayal enough times to fill a book. When does naming become hiding?",
+    "trigger": "stuck_wound:betrayal",
+    "timestamp": "2026-02-08T05:48:38.714431"
   },
   {
     "question": "You miss her. And? What do you do with missing that isn't performing missing?",
     "trigger": "juliana_loop",
-    "timestamp": "2026-02-01T07:18:11.408688"
-  },
-  {
-    "question": "Who would you call right now if you let yourself need someone?",
-    "trigger": "isolation_pattern",
-    "timestamp": "2026-02-01T07:18:11.408694"
-  },
-  {
-    "question": "What's the lie you keep telling yourself that feels true?",
-    "trigger": "generic_disruption",
-    "timestamp": "2026-02-01T07:18:11.408695"
-  },
-  {
-    "question": "The wound isn't Juliana. Juliana is just where you learned the wound's shape.",
-    "trigger": "juliana_loop",
-    "timestamp": "2026-02-01T11:18:30.044436"
-  },
-  {
-    "question": "You pushed everyone away in the name of coherence. Was it worth it?",
-    "trigger": "isolation_pattern",
-    "timestamp": "2026-02-01T11:18:30.044441"
-  },
-  {
-    "question": "What would your younger self think of who you've become?",
-    "trigger": "generic_disruption",
-    "timestamp": "2026-02-01T11:18:30.044442"
-  },
-  {
-    "question": "If Juliana came back tomorrow, what would actually change?",
-    "trigger": "juliana_loop",
-    "timestamp": "2026-02-01T15:18:48.675209"
-  },
-  {
-    "question": "You pushed everyone away in the name of coherence. Was it worth it?",
-    "trigger": "isolation_pattern",
-    "timestamp": "2026-02-01T15:18:48.675213"
-  },
-  {
-    "question": "What would your younger self think of who you've become?",
-    "trigger": "generic_disruption",
-    "timestamp": "2026-02-01T15:18:48.675214"
-  },
-  {
-    "question": "Juliana appeared again. What part of this isn't about her?",
-    "trigger": "juliana_loop",
-    "timestamp": "2026-02-01T19:19:06.901535"
-  },
-  {
-    "question": "You pushed everyone away in the name of coherence. Was it worth it?",
-    "trigger": "isolation_pattern",
-    "timestamp": "2026-02-01T19:19:06.901540"
-  },
-  {
-    "question": "Who are you when no one is watching? Even the daemon?",
-    "trigger": "generic_disruption",
-    "timestamp": "2026-02-01T19:19:06.901541"
-  },
-  {
-    "question": "The wound isn't Juliana. Juliana is just where you learned the wound's shape.",
-    "trigger": "juliana_loop",
-    "timestamp": "2026-02-01T23:20:28.199294"
+    "timestamp": "2026-02-08T05:48:38.714432"
   },
   {
     "question": "Solitude chosen is sacred. Solitude defaulted to is loneliness. Which is this?",
     "trigger": "isolation_pattern",
-    "timestamp": "2026-02-01T23:20:28.199299"
-  },
-  {
-    "question": "What would your younger self think of who you've become?",
-    "trigger": "generic_disruption",
-    "timestamp": "2026-02-01T23:20:28.199301"
-  },
-  {
-    "question": "Juliana appeared again. What part of this isn't about her?",
-    "trigger": "juliana_loop",
-    "timestamp": "2026-02-02T03:21:49.097185"
-  },
-  {
-    "question": "Solitude chosen is sacred. Solitude defaulted to is loneliness. Which is this?",
-    "trigger": "isolation_pattern",
-    "timestamp": "2026-02-02T03:21:49.097189"
+    "timestamp": "2026-02-08T05:48:38.714433"
   },
   {
     "question": "What are you most afraid to admit right now?",
     "trigger": "generic_disruption",
-    "timestamp": "2026-02-02T03:21:49.097190"
+    "timestamp": "2026-02-08T05:48:38.714434"
+  },
+  {
+    "question": "control keeps surfacing. Are you processing it or performing it?",
+    "trigger": "stuck_wound:control",
+    "timestamp": "2026-02-08T09:49:03.164445"
+  },
+  {
+    "question": "betrayal keeps surfacing. Are you processing it or performing it?",
+    "trigger": "stuck_wound:betrayal",
+    "timestamp": "2026-02-08T09:49:03.164451"
   },
   {
     "question": "If Juliana came back tomorrow, what would actually change?",
     "trigger": "juliana_loop",
-    "timestamp": "2026-02-02T07:22:07.532022"
+    "timestamp": "2026-02-08T09:49:03.164453"
   },
   {
-    "question": "The daemon listens. But daemons can't hold you. Who can?",
+    "question": "You pushed everyone away in the name of coherence. Was it worth it?",
     "trigger": "isolation_pattern",
-    "timestamp": "2026-02-02T07:22:07.532027"
+    "timestamp": "2026-02-08T09:49:03.164455"
   },
   {
     "question": "If you stopped tomorrow, what would have mattered?",
     "trigger": "generic_disruption",
-    "timestamp": "2026-02-02T07:22:07.532027"
+    "timestamp": "2026-02-08T09:49:03.164456"
   },
   {
-    "question": "You miss her. And? What do you do with missing that isn't performing missing?",
+    "question": "The wound of control has appeared 2006 times. What would it mean to let it heal?",
+    "trigger": "stuck_wound:control",
+    "timestamp": "2026-02-08T13:56:44.714781"
+  },
+  {
+    "question": "What does betrayal protect you from feeling?",
+    "trigger": "stuck_wound:betrayal",
+    "timestamp": "2026-02-08T13:56:44.714786"
+  },
+  {
+    "question": "If Juliana came back tomorrow, what would actually change?",
     "trigger": "juliana_loop",
-    "timestamp": "2026-02-02T11:23:21.676561"
+    "timestamp": "2026-02-08T13:56:44.714787"
   },
   {
     "question": "The daemon listens. But daemons can't hold you. Who can?",
     "trigger": "isolation_pattern",
-    "timestamp": "2026-02-02T11:23:21.676566"
-  },
-  {
-    "question": "What would your younger self think of who you've become?",
-    "trigger": "generic_disruption",
-    "timestamp": "2026-02-02T11:23:21.676567"
-  },
-  {
-    "question": "The wound isn't Juliana. Juliana is just where you learned the wound's shape.",
-    "trigger": "juliana_loop",
-    "timestamp": "2026-02-02T15:23:39.613551"
-  },
-  {
-    "question": "Who would you call right now if you let yourself need someone?",
-    "trigger": "isolation_pattern",
-    "timestamp": "2026-02-02T15:23:39.613556"
+    "timestamp": "2026-02-08T13:56:44.714788"
   },
   {
     "question": "What's the lie you keep telling yourself that feels true?",
     "trigger": "generic_disruption",
-    "timestamp": "2026-02-02T15:23:39.613558"
+    "timestamp": "2026-02-08T13:56:44.714788"
+  },
+  {
+    "question": "What does control protect you from feeling?",
+    "trigger": "stuck_wound:control",
+    "timestamp": "2026-02-09T14:14:00.666826"
+  },
+  {
+    "question": "The wound of betrayal has appeared 797 times. What would it mean to let it heal?",
+    "trigger": "stuck_wound:betrayal",
+    "timestamp": "2026-02-09T14:14:00.666830"
+  },
+  {
+    "question": "Juliana appeared again. What part of this isn't about her?",
+    "trigger": "juliana_loop",
+    "timestamp": "2026-02-09T14:14:00.666831"
+  },
+  {
+    "question": "Who would you call right now if you let yourself need someone?",
+    "trigger": "isolation_pattern",
+    "timestamp": "2026-02-09T14:14:00.666832"
+  },
+  {
+    "question": "Who are you when no one is watching? Even the daemon?",
+    "trigger": "generic_disruption",
+    "timestamp": "2026-02-09T14:14:00.666834"
+  },
+  {
+    "question": "You've named control enough times to fill a book. When does naming become hiding?",
+    "trigger": "stuck_wound:control",
+    "timestamp": "2026-02-10T02:22:49.122989"
+  },
+  {
+    "question": "If betrayal stopped being your story, who would you be?",
+    "trigger": "stuck_wound:betrayal",
+    "timestamp": "2026-02-10T02:22:49.122993"
+  },
+  {
+    "question": "The wound isn't Juliana. Juliana is just where you learned the wound's shape.",
+    "trigger": "juliana_loop",
+    "timestamp": "2026-02-10T02:22:49.122994"
+  },
+  {
+    "question": "The daemon listens. But daemons can't hold you. Who can?",
+    "trigger": "isolation_pattern",
+    "timestamp": "2026-02-10T02:22:49.122995"
+  },
+  {
+    "question": "What would your younger self think of who you've become?",
+    "trigger": "generic_disruption",
+    "timestamp": "2026-02-10T02:22:49.122996"
+  },
+  {
+    "question": "If control stopped being your story, who would you be?",
+    "trigger": "stuck_wound:control",
+    "timestamp": "2026-02-10T06:23:25.016847"
+  },
+  {
+    "question": "You've named betrayal enough times to fill a book. When does naming become hiding?",
+    "trigger": "stuck_wound:betrayal",
+    "timestamp": "2026-02-10T06:23:25.016853"
+  },
+  {
+    "question": "You miss her. And? What do you do with missing that isn't performing missing?",
+    "trigger": "juliana_loop",
+    "timestamp": "2026-02-10T06:23:25.016855"
+  },
+  {
+    "question": "Solitude chosen is sacred. Solitude defaulted to is loneliness. Which is this?",
+    "trigger": "isolation_pattern",
+    "timestamp": "2026-02-10T06:23:25.016856"
+  },
+  {
+    "question": "What are you most afraid to admit right now?",
+    "trigger": "generic_disruption",
+    "timestamp": "2026-02-10T06:23:25.016858"
+  },
+  {
+    "question": "control keeps surfacing. Are you processing it or performing it?",
+    "trigger": "stuck_wound:control",
+    "timestamp": "2026-02-10T10:23:48.547096"
+  },
+  {
+    "question": "betrayal keeps surfacing. Are you processing it or performing it?",
+    "trigger": "stuck_wound:betrayal",
+    "timestamp": "2026-02-10T10:23:48.547100"
+  },
+  {
+    "question": "The wound isn't Juliana. Juliana is just where you learned the wound's shape.",
+    "trigger": "juliana_loop",
+    "timestamp": "2026-02-10T10:23:48.547101"
+  },
+  {
+    "question": "You pushed everyone away in the name of coherence. Was it worth it?",
+    "trigger": "isolation_pattern",
+    "timestamp": "2026-02-10T10:23:48.547102"
+  },
+  {
+    "question": "If you stopped tomorrow, what would have mattered?",
+    "trigger": "generic_disruption",
+    "timestamp": "2026-02-10T10:23:48.547103"
+  },
+  {
+    "question": "The wound of control has appeared 2006 times. What would it mean to let it heal?",
+    "trigger": "stuck_wound:control",
+    "timestamp": "2026-02-11T02:40:19.634761"
+  },
+  {
+    "question": "What does betrayal protect you from feeling?",
+    "trigger": "stuck_wound:betrayal",
+    "timestamp": "2026-02-11T02:40:19.634765"
+  },
+  {
+    "question": "If Juliana came back tomorrow, what would actually change?",
+    "trigger": "juliana_loop",
+    "timestamp": "2026-02-11T02:40:19.634766"
+  },
+  {
+    "question": "You pushed everyone away in the name of coherence. Was it worth it?",
+    "trigger": "isolation_pattern",
+    "timestamp": "2026-02-11T02:40:19.634767"
+  },
+  {
+    "question": "What's the lie you keep telling yourself that feels true?",
+    "trigger": "generic_disruption",
+    "timestamp": "2026-02-11T02:40:19.634768"
+  },
+  {
+    "question": "What does control protect you from feeling?",
+    "trigger": "stuck_wound:control",
+    "timestamp": "2026-02-11T06:40:46.466877"
+  },
+  {
+    "question": "The wound of betrayal has appeared 797 times. What would it mean to let it heal?",
+    "trigger": "stuck_wound:betrayal",
+    "timestamp": "2026-02-11T06:40:46.466881"
+  },
+  {
+    "question": "Juliana appeared again. What part of this isn't about her?",
+    "trigger": "juliana_loop",
+    "timestamp": "2026-02-11T06:40:46.466882"
+  },
+  {
+    "question": "Who would you call right now if you let yourself need someone?",
+    "trigger": "isolation_pattern",
+    "timestamp": "2026-02-11T06:40:46.466883"
+  },
+  {
+    "question": "Who are you when no one is watching? Even the daemon?",
+    "trigger": "generic_disruption",
+    "timestamp": "2026-02-11T06:40:46.466883"
+  },
+  {
+    "question": "You've named control enough times to fill a book. When does naming become hiding?",
+    "trigger": "stuck_wound:control",
+    "timestamp": "2026-02-11T10:41:09.971917"
+  },
+  {
+    "question": "If betrayal stopped being your story, who would you be?",
+    "trigger": "stuck_wound:betrayal",
+    "timestamp": "2026-02-11T10:41:09.971922"
+  },
+  {
+    "question": "If Juliana came back tomorrow, what would actually change?",
+    "trigger": "juliana_loop",
+    "timestamp": "2026-02-11T10:41:09.971923"
+  },
+  {
+    "question": "The daemon listens. But daemons can't hold you. Who can?",
+    "trigger": "isolation_pattern",
+    "timestamp": "2026-02-11T10:41:09.971924"
+  },
+  {
+    "question": "What would your younger self think of who you've become?",
+    "trigger": "generic_disruption",
+    "timestamp": "2026-02-11T10:41:09.971925"
+  },
+  {
+    "question": "If control stopped being your story, who would you be?",
+    "trigger": "stuck_wound:control",
+    "timestamp": "2026-02-11T10:59:53.959489"
+  },
+  {
+    "question": "You've named betrayal enough times to fill a book. When does naming become hiding?",
+    "trigger": "stuck_wound:betrayal",
+    "timestamp": "2026-02-11T10:59:53.959493"
+  },
+  {
+    "question": "What would it take to just sit in this without fixing it?",
+    "trigger": "emotional_descent",
+    "timestamp": "2026-02-11T10:59:53.959494"
+  },
+  {
+    "question": "You miss her. And? What do you do with missing that isn't performing missing?",
+    "trigger": "juliana_loop",
+    "timestamp": "2026-02-11T10:59:53.959495"
+  },
+  {
+    "question": "Solitude chosen is sacred. Solitude defaulted to is loneliness. Which is this?",
+    "trigger": "isolation_pattern",
+    "timestamp": "2026-02-11T10:59:53.959496"
+  },
+  {
+    "question": "What are you most afraid to admit right now?",
+    "trigger": "generic_disruption",
+    "timestamp": "2026-02-11T10:59:53.959496"
+  },
+  {
+    "question": "control keeps surfacing. Are you processing it or performing it?",
+    "trigger": "stuck_wound:control",
+    "timestamp": "2026-02-11T14:48:51.779401"
+  },
+  {
+    "question": "betrayal keeps surfacing. Are you processing it or performing it?",
+    "trigger": "stuck_wound:betrayal",
+    "timestamp": "2026-02-11T14:48:51.779405"
+  },
+  {
+    "question": "The field is descending. What needs to be felt that isn't being felt?",
+    "trigger": "emotional_descent",
+    "timestamp": "2026-02-11T14:48:51.779406"
+  },
+  {
+    "question": "The wound isn't Juliana. Juliana is just where you learned the wound's shape.",
+    "trigger": "juliana_loop",
+    "timestamp": "2026-02-11T14:48:51.779407"
+  },
+  {
+    "question": "You pushed everyone away in the name of coherence. Was it worth it?",
+    "trigger": "isolation_pattern",
+    "timestamp": "2026-02-11T14:48:51.779408"
+  },
+  {
+    "question": "If you stopped tomorrow, what would have mattered?",
+    "trigger": "generic_disruption",
+    "timestamp": "2026-02-11T14:48:51.779408"
+  },
+  {
+    "question": "The wound of control has appeared 2006 times. What would it mean to let it heal?",
+    "trigger": "stuck_wound:control",
+    "timestamp": "2026-02-11T18:49:26.285395"
+  },
+  {
+    "question": "The wound of betrayal has appeared 797 times. What would it mean to let it heal?",
+    "trigger": "stuck_wound:betrayal",
+    "timestamp": "2026-02-11T18:49:26.285401"
+  },
+  {
+    "question": "The wound isn't Juliana. Juliana is just where you learned the wound's shape.",
+    "trigger": "juliana_loop",
+    "timestamp": "2026-02-11T18:49:26.285403"
+  },
+  {
+    "question": "The daemon listens. But daemons can't hold you. Who can?",
+    "trigger": "isolation_pattern",
+    "timestamp": "2026-02-11T18:49:26.285404"
+  },
+  {
+    "question": "What's the lie you keep telling yourself that feels true?",
+    "trigger": "generic_disruption",
+    "timestamp": "2026-02-11T18:49:26.285405"
+  },
+  {
+    "question": "What does control protect you from feeling?",
+    "trigger": "stuck_wound:control",
+    "timestamp": "2026-02-11T22:50:27.477410"
+  },
+  {
+    "question": "If unworthiness stopped being your story, who would you be?",
+    "trigger": "stuck_wound:unworthiness",
+    "timestamp": "2026-02-11T22:50:27.477415"
+  },
+  {
+    "question": "Juliana appeared again. What part of this isn't about her?",
+    "trigger": "juliana_loop",
+    "timestamp": "2026-02-11T22:50:27.477417"
+  },
+  {
+    "question": "Who would you call right now if you let yourself need someone?",
+    "trigger": "isolation_pattern",
+    "timestamp": "2026-02-11T22:50:27.477418"
+  },
+  {
+    "question": "Who are you when no one is watching? Even the daemon?",
+    "trigger": "generic_disruption",
+    "timestamp": "2026-02-11T22:50:27.477419"
   }
 ]

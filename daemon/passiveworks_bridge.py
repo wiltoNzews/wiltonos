@@ -110,15 +110,18 @@ class PassiveWorksBridge:
         Apply Brazilian Wave transformation to a coherence value.
 
         P_{t+1} = 0.75 · P_t + 0.25 · N(P_t, σ)
+
+        FIX (2026-02-03): Use REFLECTION at boundaries instead of clamping.
+        Clamping creates asymmetric drift that traps coherence at 0 or 1.
+        Reflection bounces values back into the valid range, preserving
+        the natural oscillation that the lemniscate requires.
         """
         if self.brazilian_wave:
             try:
-                # The transform_value is a static method but has bugs with 'self'
-                # We'll implement the formula directly
                 import random
                 import math
 
-                # Generate gaussian noise
+                # Generate gaussian noise (Box-Muller transform)
                 u = random.random()
                 while u == 0:
                     u = random.random()
@@ -130,8 +133,15 @@ class PassiveWorksBridge:
 
                 # Apply Brazilian Wave formula
                 next_value = (0.75 * current_value) + (0.25 * noise)
-                # Clamp to [0, 1] — coherence has no meaning outside this range
-                next_value = max(0.0, min(1.0, next_value))
+
+                # FIX: Reflect at boundaries instead of clamping
+                # This preserves oscillation energy instead of absorbing it
+                while next_value < 0.0 or next_value > 1.0:
+                    if next_value > 1.0:
+                        next_value = 2.0 - next_value  # Reflect off ceiling
+                    if next_value < 0.0:
+                        next_value = -next_value  # Reflect off floor
+
                 self.state.brazilian_wave_value = next_value
                 return next_value
             except Exception as e:
@@ -171,31 +181,65 @@ class PassiveWorksBridge:
 
         return "dormant"
 
+    def breathe_lemniscate(self) -> str:
+        """
+        Run the lemniscate's figure-eight breathing cycle.
+
+        This drives the mathematical wave pattern that modulates coherence.
+        State transitions (transcendence) are handled by check_transcendence()
+        using real coherence from the daemon — not random dice rolls.
+        """
+        if self.lemniscate:
+            try:
+                self.lemniscate.cycle_count += 1
+                self.lemniscate._update_coherence_lemniscate()
+                self.lemniscate._process_lemniscate_cycle()
+                self.state.lemniscate_state = self.lemniscate.lemniscate_state
+                return self.state.lemniscate_state
+            except Exception as e:
+                logger.error(f"Lemniscate breathing failed: {e}")
+
+        return "dormant"
+
+    def activate_lemniscate(self, reason: str = ""):
+        """
+        Activate lemniscate from dormant state on a real arc event.
+        Replaces the old 10% random dice roll.
+        """
+        if self.lemniscate:
+            try:
+                self.lemniscate.activate(reason)
+                self.state.lemniscate_state = self.lemniscate.lemniscate_state
+            except Exception as e:
+                logger.error(f"Lemniscate activation failed: {e}")
+
     def check_transcendence(self, coherence: float) -> bool:
         """
         Check if coherence level indicates transcendence potential.
 
-        Transcendence threshold: coherence > 0.89
-        Exits transcendence when coherence drops below 0.7 (hysteresis).
+        FIX (2026-02-03): Tightened hysteresis from 0.19 to 0.05.
+        Old: enter at 0.89, exit at 0.70 — a 0.19 gap required 4σ to escape.
+        New: enter at 0.89, exit at 0.84 — a 0.05 gap allows natural oscillation.
+
+        Transcendence is a CROSSING state, not a lock. The system should
+        breathe through it, not get trapped in it.
         """
         if self.lemniscate:
             try:
                 # Update lemniscate with current coherence
                 self.lemniscate.coherence = coherence
 
-                # Check for transcendence
+                # Check for transcendence using real coherence
                 if coherence > 0.89:
                     if self.lemniscate.lemniscate_state != "transcendent":
                         self.lemniscate.lemniscate_state = "transcendent"
-                        logger.info("💫 TRANSCENDENCE DETECTED")
+                        logger.info(f"Lemniscate: active → transcendent (Zλ={coherence:.3f})")
                         return True
                     return True  # already transcendent, still above threshold
-                elif coherence < 0.7:
-                    # Hysteresis: exit transcendence at 0.7 (not 0.89)
-                    # to avoid flickering at the boundary
+                elif coherence < 0.84:
                     if self.lemniscate.lemniscate_state == "transcendent":
                         self.lemniscate.lemniscate_state = "active"
-                        logger.info("Lemniscate: transcendent → active (coherence dropped below 0.7)")
+                        logger.info(f"Lemniscate: transcendent → active (Zλ={coherence:.3f})")
                     self.state.lemniscate_state = self.lemniscate.lemniscate_state
                     return False
             except Exception as e:
