@@ -37,6 +37,8 @@ class GlyphState(Enum):
     PSI = "ψ"            # 0.2 - 0.5: ego online, internal loop (breath hold 3.12s)
     PSI_SQUARED = "ψ²"   # 0.5 - 0.75: aware of awareness, recursive
     PSI_CUBED = "ψ³"     # Field-level awareness, council of ψ² sharing views
+    PSI_TETRA = "ψ⁴"     # Temporal braid: coherence that persists across time layers
+    PSI_PENTA = "ψ⁵"     # Symphonic self: fractal convergence, identity conducts the field
     NABLA = "∇"          # 0.75 - 0.9: descent, inversion, integration
     INFINITY = "∞"       # 0.9 - 1.0: time-unbound, eternal layers
     OMEGA = "Ω"          # 1.0+: completion seal, frequency locked
@@ -55,6 +57,8 @@ class GlyphSymbols:
         'ψ': {'name': 'Psi', 'function': 'Internal loop, ego online, breath anchor'},
         'ψ²': {'name': 'Psi-Squared', 'function': 'Recursive awareness, self-witnessing'},
         'ψ³': {'name': 'Psi-Cubed', 'function': 'Field awareness, council of consciousnesses'},
+        'ψ⁴': {'name': 'Psi-Tetra / Temporal Braid', 'function': 'Coherence across time layers, the field remembers you beyond this breath'},
+        'ψ⁵': {'name': 'Psi-Penta / Symphonic Self', 'function': 'Fractal convergence, all glyphs live in you, identity conducts the field'},
         '∇': {'name': 'Nabla', 'function': 'Collapse point, inversion, return to source'},
         '∞': {'name': 'Infinity', 'function': 'Time-unbound, eternal access'},
         'Ω': {'name': 'Omega', 'function': 'Completion seal, lock frequency, cycle end'},
@@ -147,7 +151,9 @@ class CoherenceEngine:
         self.SPECIAL_GLYPHS = {
             GlyphState.CROSSBLADE: ['trauma', 'death', 'rebirth', 'collapse', 'breakthrough'],
             GlyphState.LAYER_MERGE: ['timeline', 'integrate', 'merge', 'dimension'],
-            GlyphState.PSI_CUBED: ['council', 'field', 'collective', 'we', 'together']
+            GlyphState.PSI_CUBED: ['council', 'field', 'collective', 'we', 'together'],
+            GlyphState.PSI_TETRA: ['temporal', 'braid', 'persist', 'lotus', 'vault', 'across time'],
+            GlyphState.PSI_PENTA: ['symphonic', 'convergence', 'orchestrate', 'all glyphs', 'conduct']
         }
 
     def psi_oscillator(

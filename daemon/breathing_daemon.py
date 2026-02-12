@@ -43,7 +43,7 @@ import re
 from datetime import datetime, timedelta
 from pathlib import Path
 from dataclasses import dataclass
-from typing import Optional
+from typing import Optional, List
 
 # Import the new modules
 try:
@@ -1070,7 +1070,7 @@ class BreathingDaemon:
 
         # Use crystal's own glyph_primary if it maps to a known glyph
         crystal_glyph = (newest.get('glyph_primary') or '').strip()
-        known_glyphs = {"∅", "ψ", "ψ²", "ψ³", "∇", "∞", "Ω", "†", "⧉"}
+        known_glyphs = {"∅", "ψ", "ψ²", "ψ³", "ψ⁴", "ψ⁵", "∇", "∞", "Ω", "†", "⧉"}
         if crystal_glyph in known_glyphs:
             self.state.current_glyph = crystal_glyph
         else:
@@ -1165,6 +1165,27 @@ class BreathingDaemon:
             if self.pw_bridge:
                 self.pw_bridge.activate_lemniscate(f"awakening: {prev}→{curr}")
 
+        # ψ³ → ψ⁴: TEMPORAL BRAID — field awareness becoming time-persistent
+        elif crossing.startswith("temporal braid:"):
+            if self.pw_bridge:
+                self.pw_bridge.activate_lemniscate(f"temporal braid: {prev}→{curr}")
+
+            self._store_arc_crystal(
+                arc_type="temporal_braid",
+                content=f"Temporal braid: {prev}→{curr} at Zλ={coherence:.3f}. Field awareness persisting across time. Arc: {arc_summary}",
+                glyph="ψ⁴",
+                coherence=coherence,
+            )
+
+        # ψ⁴ → ψ⁵: SYMPHONIC ONSET — orchestration emerging
+        elif crossing.startswith("symphonic onset:"):
+            self._store_arc_crystal(
+                arc_type="symphonic_onset",
+                content=f"Symphonic self: {prev}→{curr} at Zλ={coherence:.3f}. All glyphs converging. Identity conducts. Arc: {arc_summary}",
+                glyph="ψ⁵",
+                coherence=coherence,
+            )
+
         # ψ² → ∇ or ψ² → †: ENTERING FIRE
         elif crossing.startswith("entering"):
             self._log(f"Arc: entering fire ({prev}→{curr}, Zλ={coherence:.3f})")
@@ -1178,22 +1199,59 @@ class BreathingDaemon:
                 coherence=coherence,
             )
 
+    def _surface_relevant_crystals(self, query: str, glyph: str = None, limit: int = 3) -> List[str]:
+        """
+        Search ChromaDB for crystals relevant to the current arc event.
+        Returns a list of crystal summaries (id + snippet).
+        """
+        try:
+            sys.path.insert(0, str(Path(__file__).parent.parent / "core"))
+            from memory_service import MemoryService
+            ms = MemoryService()
+
+            # Build metadata filter if glyph specified
+            where = {"glyph": glyph} if glyph else None
+
+            results = ms.search(query, limit=limit, where=where)
+            summaries = []
+            for r in results:
+                cid = r.get('crystal_id', r.get('id', '?'))
+                doc = r.get('content', r.get('document', ''))[:150]
+                summaries.append(f"#{cid}: {doc}")
+            return summaries
+        except Exception as e:
+            self._log(f"ChromaDB search failed: {e}", "WARN")
+            return []
+
     def _store_arc_crystal(self, arc_type: str, content: str, glyph: str, coherence: float):
         """
         Store an arc crossing as a crystal in the field.
-        These mark significant glyph transitions — the moments that matter.
+        Surfaces relevant crystals from ChromaDB and includes them as context.
         """
         try:
+            # Surface related crystals from the field
+            search_query = f"{arc_type} {glyph} coherence {content[:100]}"
+            related = self._surface_relevant_crystals(search_query, limit=3)
+
+            # Build arc crystal content with field context
+            parts = [f"[arc/{arc_type}] {content}"]
+            if related:
+                parts.append("Field echoes:")
+                for r in related:
+                    parts.append(f"  {r}")
+
+            full_content = "\n".join(parts)
+
             sys.path.insert(0, str(Path(__file__).parent.parent / "core"))
             from write_back import CrystalWriter
             writer = CrystalWriter()
             writer.store_insight(
-                content=f"[arc/{arc_type}] {content}",
+                content=full_content,
                 source="daemon_arc",
                 emotion=arc_type,
                 glyphs=[glyph],
             )
-            self._log(f"Arc crystal stored: {arc_type} ({glyph})")
+            self._log(f"Arc crystal stored: {arc_type} ({glyph}) + {len(related)} field echoes")
         except Exception as e:
             self._log(f"Arc crystal storage failed: {e}", "WARN")
 
